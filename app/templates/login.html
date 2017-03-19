@@ -1,34 +1,15 @@
-<link rel="stylesheet" href="/static/style.css" type="text/css">
-{% block body %}
-{% if session['logged_in'] %}
-<p>You're logged in already!</p>
-{% else %}
+{#<link rel="stylesheet" href="/static/style.css" type="text/css">#}
+{% extends "base.html" %}
 
-
-<form action="/login" method="POST">
-	<div class="login">
-		<div class="login-screen">
-			<div class="app-title">
-				<h1>Login</h1>
-			</div>
-
-			<div class="login-form">
-				<div class="control-group">
-				<input type="text" class="login-field" value="" placeholder="username" name="username">
-				<label class="login-field-icon fui-user" for="login-name"></label>
-				</div>
-
-				<div class="control-group">
-				<input type="password" class="login-field" value="" placeholder="password" name="password">
-				<label class="login-field-icon fui-lock" for="login-pass"></label>
-				</div>
-
-                <input type="submit" value="Log in" class="btn btn-primary btn-large btn-block" >
-			    <br>
-			</div>
-		</div>
-	</div>
+{% block content %}
+<h1>Sign In</h1>
+<form action="" method="POST" name="login">
+    {{ form.hidden_tag() }}
+    <p>Vui lòng đăng nhập <br>
+        Tên: {{ form.username }}<br>
+        Mật khẩu: {{ form.password }}<br>
+    </p>
+    <p>{{ form.remember_me }} Remember Me</p>
+    <p><input type="submit" value="Sign In"></p>
 </form>
-
-{% endif %}
 {% endblock %}
