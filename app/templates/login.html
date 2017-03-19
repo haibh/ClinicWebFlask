@@ -2,14 +2,15 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1>Sign In</h1>
-<form action="" method="POST" name="login">
-    {{ form.hidden_tag() }}
-    <p>Vui lòng đăng nhập <br>
-        Tên: {{ form.username }}<br>
-        Mật khẩu: {{ form.password }}<br>
-    </p>
-    <p>{{ form.remember_me }} Remember Me</p>
-    <p><input type="submit" value="Sign In"></p>
-</form>
+    <h1>Sign In</h1>
+    {{ logged_in }}
+    <form action="" method="POST" name="login">
+        {{ form.hidden_tag() }}
+        <p>Vui lòng đăng nhập <br>
+            Tên: {{ form.username }}<br>
+            Mật khẩu: {{ form.password }}<br>
+        </p>
+        <p>{{ form.remember_me }} Remember Me</p>
+        <p><input type="submit" value="Sign In"></p>
+    </form>
 {% endblock %}

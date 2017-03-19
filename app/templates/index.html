@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
+    {{ logged_in }}
     {% if not logged_in %}
         <div>Clinic Management</div>
         <h1>Hello, {{ user }}!</h1>

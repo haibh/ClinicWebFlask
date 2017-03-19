@@ -49,4 +49,4 @@ def login():
 @app.route("/logout")
 def logout():
     session['logged_in'] = False
-    return index()
+    return redirect('/login')
