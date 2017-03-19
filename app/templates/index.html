@@ -1,13 +1,4 @@
-<html>
-<head>
-    {% if title %}
-        <title>{{ title }} - BHH</title>
-    {% else %}
-        <title>NO TITLE</title>
-    {% endif %}
-</head>
-<body>
-<h1>Hello, {{ user }}!</h1>
-<a href='/logout'>Log out</a>
-</body>
-</html>
+{% extends "base.html" %}
+{% block index %}
+    <h1>Hello, {{ user }}!</h1>
+{% endblock %}

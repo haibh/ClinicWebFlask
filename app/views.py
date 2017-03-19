@@ -6,6 +6,7 @@ from app import app
 
 
 @app.route('/')
+@app.route('/index')
 def index():
     if not session.get('logged_in'):
         return render_template('login.html')

@@ -1,0 +1,14 @@
+<html>
+<head>
+    {% if title %}
+        <title>{{ title }} - BHH</title>
+    {% else %}
+        <title>NO TITLE</title>
+    {% endif %}
+</head>
+<body>
+    <div>Clinic Management <a href="/index">Home</a></div>
+    <a href='/logout'>Log out</a>
+    {% block index %}{% endblock %}
+</body>
+</html>
