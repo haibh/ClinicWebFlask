@@ -1,13 +1,14 @@
 {% extends "base.html" %}
 
 {% block content %}
-    {{ logged_in }}
-    {% if not logged_in %}
+{#    {% if not logged_in %}#}
+    {% if logged_in %}
         <div>Clinic Management</div>
         <h1>Hello, {{ user }}!</h1>
         <a href='/logout'>Log out</a>
     {% else %}
-        <a href='/login'>Log in</a>
+{#        <a href='/login'>Log in</a>#}
+        <a href='/logout'>Log out</a>
     {% endif %}
     <hr>
 {% endblock %}

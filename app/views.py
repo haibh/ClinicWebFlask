@@ -9,29 +9,32 @@ from .forms import LoginForm
 @app.route('/')
 @app.route('/index')
 def index():
-    # if not session.get('logged_in'):
-    #     return render_template('login.html')
-    # else:
-    #     return render_template('index.html',
-    #                            title='Clinic Management',
-    #                            user=session['username'],
-    #                            logged_in=session['logged_in'])
-    return render_template('index.html')
+    if not session.get('logged_in'):
+        return redirect('/login')
+    else:
+        return render_template('index.html',
+                               title='Clinic Management',
+                               user=session['username'],
+                               logged_in=session['logged_in'])
 
 
 @app.route('/login', methods=['POST', 'GET'])
 def login():
-    form = LoginForm
     form = LoginForm()
     if form.validate_on_submit():
-        flash('Login requested for username="%s",password="%s" remember_me=%s' %
-              (form.username.data, form.password.data, str(form.remember_me.data)))
-        return redirect('/index')
+        if form.username.data == '1' and form.password.data == '1':
+            flash('Login requested for username="%s",password="%s" remember_me=%s' %
+                  (form.username.data, form.password.data, str(form.remember_me.data)))
+            session['logged_in'] = True
+            session['username'] = form.username.data
+            return redirect('/index')
+        else:
+            flash("Wrong username/password")
     return render_template('login.html',
                            title='Sign In',
                            form=form,
-                           logged_in=True,
-                           user='TestUser')
+                           user=form.username.data,
+                           logged_in=session['logged_in'])
 
 
     # if form.username.data == '1' and form.password.data == '1':
