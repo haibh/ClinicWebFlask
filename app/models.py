@@ -37,6 +37,10 @@ class User(db.Model):
     password = db.Column(db.String(32), index=True, unique=True)
     email = db.Column(db.String(32), index=True, unique=True)
 
+    def __init__(self, username, password):
+        self.username = username
+        self.password = password
+
     def __repr__(self):
         return '<User %r>' % (self.username)
 
@@ -46,14 +50,14 @@ class Patient(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     patient_name = db.Column(db.String(32), index=True, unique=True)
-    patient_phone = db.Column(db.INTEGER, index=True, unique=True)
+    patient_phone = db.Column(db.String(32), index=True, unique=True)
     patient_age = db.Column(db.INTEGER, index=True, unique=True)
     patient_birth_year = db.Column(db.INTEGER, index=True, unique=True)
     patient_history = db.Column(db.Text, index=True, unique=True)
     patient_family_history = db.Column(db.Text, index=True, unique=True)
 
-    patient_description_ = db.relationship('Diagnostic',
-                                           backref='patient_description', lazy='dynamic')
+    patient_diagnostic = db.relationship('Diagnostic',
+                                         backref='patient_diagnostic', lazy='dynamic')
     patient_treatment = db.relationship('Treatment',
                                         backref='patient_treatment', lazy='dynamic')
 
@@ -66,7 +70,7 @@ class Patient(db.Model):
         self.patient_family_history = familiy_history
 
     def __repr__(self):
-        return '<User %r>' % (self.patient_name)
+        return '<Patient %r>' % (self.patient_name)
 
 
 class Medicine(db.Model):
@@ -81,6 +85,8 @@ class Medicine(db.Model):
     medicine_inventory = db.Column(db.INTEGER, index=True, unique=True)
     medicine_price = db.Column(db.INTEGER, index=True, unique=True)
 
+    # treatment_id = db.Column(db.INTEGER, db.ForeignKey(Treatment.id))
+
     def __init__(self, name, code, group, active_element, unit, inventory, price):
         self.medicine_name = name
         self.medicine_code = code
@@ -91,7 +97,7 @@ class Medicine(db.Model):
         self.medicine_price = price
 
     def __repr__(self):
-        return '<User %r>' % (self.medicine_name)
+        return '<Medicine %r>' % (self.medicine_name)
 
 
 class Diagnostic(db.Model):
@@ -113,7 +119,7 @@ class Diagnostic(db.Model):
             self.diagnostic_timestamp = datetime.utcnow()
 
     def __repr__(self):
-        return '<User %r>' % (self.diagnostic_name)
+        return '<Diagnostic %r>' % (self.diagnostic_name)
 
 
 class Treatment(db.Model):
@@ -125,8 +131,8 @@ class Treatment(db.Model):
 
     patient_id = db.Column(db.INTEGER, db.ForeignKey(Patient.id))
 
-    diagnostic_medicine = db.relationship('Medicine',
-                                          backref='medicine', lazy='dynamic')
+    # treatment_medicine = db.relationship('Medicine',
+    #                                      backref='treatment_medicine', lazy='dynamic')
 
     def __init__(self, name, timestamp=None):
         self.treatment_name = name
@@ -134,4 +140,4 @@ class Treatment(db.Model):
             self.treatment_timestamp = datetime.utcnow()
 
     def __repr__(self):
-        return '<User %r>' % (self.treatment_name)
+        return '<Treatment %r>' % (self.treatment_name)
