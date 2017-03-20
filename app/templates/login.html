@@ -2,11 +2,10 @@
 {#{% extends "base.html" %}#}
 
 {% block content %}
-    <h1>Sign In</h1>
+    <h1>Vui lòng đăng nhập</h1>
     <form action="" method="POST" name="login">
         {{ form.hidden_tag() }}
-        <p>Vui lòng đăng nhập <br>
-            Tên: {{ form.username }}<br>
+        <p> Tên: {{ form.username }}<br>
             Mật khẩu: {{ form.password }}<br>
         </p>
         <p>{{ form.remember_me }} Remember Me</p>

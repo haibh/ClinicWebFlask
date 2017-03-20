@@ -1,14 +1,21 @@
-# Statement for enabling the development environment
-DEBUG = True
-
 # Define the application directory
 import os
+
+# Statement for enabling the development environment
+DEBUG = True
 
 BASE_DIR = os.path.abspath(os.path.dirname(__file__))
 
 # Define the database - we are working with
 # SQLite for this example
-SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(BASE_DIR, 'user.db')
+SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(BASE_DIR, 'clinic.db')
+
+# SQLALCHEMY_BINDS = {
+#     'patient':        'sqlite:///' + os.path.join(BASE_DIR, 'patient.db'),
+#     'medicine':        'sqlite:///' + os.path.join(BASE_DIR, 'medicine.db'),
+#     'diagnostic':        'sqlite:///' + os.path.join(BASE_DIR, 'diagnostic.db'),
+#     'treatment':      'sqlite:///' + os.path.join(BASE_DIR, 'treatment.db')
+# }
 
 SQLALCHEMY_MIGRATE_REPO = os.path.join(BASE_DIR, 'db_repository')
 

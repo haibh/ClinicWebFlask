@@ -26,3 +26,22 @@ Chẩn đoán           - patientDiagnostic
 
 
 pyinstaller --onefile --windowed ClicnicApp.py
+
+/////////////////// CREATE FAKE DATA ////////////////////////
+>>> u = models.User(nickname='susan', email='susan@email.com')
+>>> db.session.add(u)
+>>> db.session.commit()
+
+>>> users = models.User.query.all()
+
+>>> for u in users:
+...     print(u.id,u.nickname)
+
+u = models.User.query.get(1)
+
+
+>>> import datetime
+>>> u = models.User.query.get(1)
+>>> p = models.Post(body='my first post!', timestamp=datetime.datetime.utcnow(), author=u)
+>>> db.session.add(p)
+>>> db.session.commit()
