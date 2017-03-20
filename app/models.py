@@ -79,11 +79,11 @@ class Medicine(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     medicine_name = db.Column(db.String(32), index=True, unique=True)
     medicine_code = db.Column(db.String(32), index=True, unique=True)
-    medicine_group = db.Column(db.String(32), index=True, unique=True)
-    medicine_active_element = db.Column(db.Text, index=True, unique=True)
-    medicine_unit = db.Column(db.String(32), index=True, unique=True)
-    medicine_inventory = db.Column(db.INTEGER, index=True, unique=True)
-    medicine_price = db.Column(db.INTEGER, index=True, unique=True)
+    medicine_group = db.Column(db.String(32), index=True)
+    medicine_active_element = db.Column(db.Text, index=True)
+    medicine_unit = db.Column(db.String(32), index=True)
+    medicine_inventory = db.Column(db.INTEGER, index=True)
+    medicine_price = db.Column(db.INTEGER, index=True)
 
     # treatment_id = db.Column(db.INTEGER, db.ForeignKey(Treatment.id))
 
@@ -105,9 +105,9 @@ class Diagnostic(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     diagnostic_name = db.Column(db.String(32), index=True, unique=True)
-    diagnostic_type = db.Column(db.String(32), index=True, unique=True)
-    diagnostic_details = db.Column(db.Text, index=True, unique=True)
-    diagnostic_timestamp = db.Column(db.DATETIME, index=True, unique=True)
+    diagnostic_type = db.Column(db.String(32), index=True)
+    diagnostic_details = db.Column(db.Text, index=True)
+    diagnostic_timestamp = db.Column(db.DATETIME, index=True)
 
     patient_id = db.Column(db.INTEGER, db.ForeignKey(Patient.id))
 
@@ -127,7 +127,7 @@ class Treatment(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     treatment_name = db.Column(db.String(32), index=True, unique=True)
-    treatment_timestamp = db.Column(db.DATETIME, index=True, unique=True)
+    treatment_timestamp = db.Column(db.DATETIME, index=True)
 
     patient_id = db.Column(db.INTEGER, db.ForeignKey(Patient.id))
 

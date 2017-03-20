@@ -21,6 +21,7 @@ def index():
 @app.route('/login', methods=['POST', 'GET'])
 def login():
     form = LoginForm()
+    session['logged_in'] = False
     if form.validate_on_submit():
         if form.username.data == '1' and form.password.data == '1':
             flash('Login requested for username="%s",password="%s" remember_me=%s' %

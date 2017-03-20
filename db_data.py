@@ -19,13 +19,13 @@ medicine2 = models.Medicine('toplexin', 'ho', 'haha', 'co gi adsfasdfdau', 'vi',
 db.session.add(medicine1)
 db.session.add(medicine2)
 
-treatment1 = models.Treatment('kham lan dau', None, patient_id=user1)
-treatment2 = models.Treatment('kham lan 2', None, patient_id=user2)
+treatment1 = models.Treatment('kham lan dau', user1)
+treatment2 = models.Treatment('kham lan 2', user2)
 db.session.add(treatment1)
 db.session.add(treatment2)
 
-diagnostic1 = models.Diagnostic('Lan 1', 'xet nghiem', 'bo tay', None, patient_id=user1)
-diagnostic2 = models.Diagnostic('Lan 2', 'cat bo het', 'bo chan', None, patient_id=user2)
+diagnostic1 = models.Diagnostic('Lan 1', 'xet nghiem', 'bo tay', user1)
+diagnostic2 = models.Diagnostic('Lan 2', 'cat bo het', 'bo chan', user2)
 db.session.add(diagnostic1)
 db.session.add(diagnostic2)
 
@@ -35,3 +35,4 @@ print (models.User.query.all())
 print (models.Patient.query.all())
 print (models.Medicine.query.all())
 print (models.Treatment.query.all())
+print (models.Diagnostic.query.all())
