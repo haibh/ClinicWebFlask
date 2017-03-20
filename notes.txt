@@ -1,0 +1,28 @@
+admin:  postgres
+pass:   postgres123456
+port:   5432
+
+=====================================
+medicine:
+Mã          - medicineCode
+nhóm        - medicuneGroup
+Tên Thuốc   - medicineName
+hoạt Chất   - medicineActiveElement
+đơn vị      - medicineUnit
+Tổn         - medicineInventory
+==================================
+Thông tin khám bệnh:
+
+CMND                - patientID
+Họ Tên              - patientName
+Điện thoại          - patientPhone
+Tuổi                - patientAge
+Năm sinh            - patientBirthYear
+Tiền căn            - patientHistory
+Tiền căn gia đình   - patientFamilyHistory
+Mô tả bệnh          - patientDescription
+Chẩn đoán           - patientDiagnostic
+
+
+
+pyinstaller --onefile --windowed ClicnicApp.py
