@@ -4,7 +4,7 @@
 from flask import Flask, g, flash, redirect, render_template, request, session, abort, url_for
 from flask_login import login_user, logout_user, current_user, login_required
 from app import app, db, models, login_manager
-from .forms import LoginForm
+from .forms import LoginForm, PatientForm, DiagnosticForm, MedicineForm, TreatmentForm
 
 login_manager.login_message = u"Vui lòng đăng nhập"
 login_manager.session_protection = "strong"
@@ -14,16 +14,20 @@ login_manager.session_protection = "strong"
 @app.route('/index', methods=['POST', 'GET'])
 @login_required
 def index():
+    form = PatientForm()
+    if form.validate_on_submit():
+        flash(u'Đã điền đủ')
+    else:
+        flash(u'Vui lòng điền thông tin')
+
     return render_template('index.html',
-                           title=u'Quản lý phòng mạch')
+                           form=form)
 
 
 @app.route('/login', methods=['POST', 'GET'])
 def login():
     form = LoginForm()
-    session['logged_in'] = False
     if form.validate_on_submit():
-
         # Query & Login
         user_query = models.User.query.filter_by(username=form.username.data).first()
         if user_query.username == form.username.data and user_query.password == form.password.data:
@@ -43,7 +47,6 @@ def login():
             flash("Wrong username/password")
 
     return render_template('login.html',
-                           title='Sign In',
                            form=form)
 
 
