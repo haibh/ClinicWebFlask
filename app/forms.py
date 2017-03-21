@@ -1,6 +1,7 @@
-# from flask_wtf import Form
+#!/usr/bin/python
+# -*- coding: utf8 -*-
 from flask_wtf import FlaskForm
-from wtforms import StringField, BooleanField, PasswordField, validators
+from wtforms import StringField, BooleanField, PasswordField, validators, SubmitField
 from wtforms.validators import DataRequired
 
 
@@ -17,6 +18,9 @@ class PatientForm(FlaskForm):
     patient_birth_year = StringField('patient_birth_year', validators=[DataRequired()])
     patient_history = StringField('patient_history', validators=[DataRequired()])
     patient_family_history = StringField('patient_family_history', validators=[DataRequired()])
+
+    view_all = SubmitField(u'Xem tất cả')
+    add_new = SubmitField(u'Thêm mới')
 
 
 class MedicineForm(FlaskForm):

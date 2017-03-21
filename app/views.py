@@ -16,7 +16,10 @@ login_manager.session_protection = "strong"
 def index():
     form = PatientForm()
     if form.validate_on_submit():
-        flash(u'Đã điền đủ')
+        if form.view_all.data:
+            flash('VIEW ALL')
+        elif form.add_new.data:
+            flash('ADD NEW')
     else:
         flash(u'Vui lòng điền thông tin')
 

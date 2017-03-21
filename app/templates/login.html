@@ -2,13 +2,17 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1>Trang đăng nhập</h1>
-    <form action="" method="POST" name="login">
-        {{ form.hidden_tag() }}
-        <p> Tên: {{ form.username }}<br>
-            Mật khẩu: {{ form.password }}<br>
-        </p>
-        <p>{{ form.remember_me }} Ghi nhớ</p>
-        <p><input type="submit" value="Sign In"></p>
-    </form>
+    {% if current_user.is_authenticated %}
+        <h1>Bạn đã đăng nhập</h1>
+    {% else %}
+        <h1>Trang đăng nhập</h1>
+        <form action="" method="POST" name="login">
+            {{ form.hidden_tag() }}
+            <p> Tên: {{ form.username }}<br>
+                Mật khẩu: {{ form.password }}<br>
+            </p>
+            <p>{{ form.remember_me }} Ghi nhớ</p>
+            <p><input type="submit" value="Sign In"></p>
+        </form>
+    {% endif %}
 {% endblock %}

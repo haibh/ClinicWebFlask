@@ -12,7 +12,8 @@
                 Lịch sử: {{ form.patient_history }}<br>
                 Lịch sử gia đình: {{ form.patient_family_history }}<br>
             </p>
-            <p><input type="submit" value="Xem tất cả"></p>
+            {{ form.view_all }}
+            {{ form.add_new }}
         </form>
     {% endif %}
 {% endblock %}
