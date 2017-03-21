@@ -88,12 +88,12 @@ class Patient(db.Model):
     # __bind_key__ = 'patient'
 
     id = db.Column(db.Integer, primary_key=True)
-    patient_name = db.Column(db.String(32), index=True, unique=True)
-    patient_phone = db.Column(db.String(32), index=True, unique=True)
-    patient_age = db.Column(db.INTEGER, index=True, unique=True)
-    patient_birth_year = db.Column(db.INTEGER, index=True, unique=True)
-    patient_history = db.Column(db.Text, index=True, unique=True)
-    patient_family_history = db.Column(db.Text, index=True, unique=True)
+    patient_name = db.Column(db.String(32), index=True)
+    patient_phone = db.Column(db.String(32), index=True)
+    patient_age = db.Column(db.INTEGER, index=True)
+    patient_birth_year = db.Column(db.INTEGER, index=True)
+    patient_history = db.Column(db.Text, index=True)
+    patient_family_history = db.Column(db.Text, index=True)
 
     patient_diagnostic = db.relationship('Diagnostic',
                                          backref='patient_diagnostic', lazy='dynamic')
@@ -117,7 +117,7 @@ class Medicine(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     medicine_name = db.Column(db.String(32), index=True, unique=True)
-    medicine_code = db.Column(db.String(32), index=True, unique=True)
+    medicine_code = db.Column(db.String(32), index=True)
     medicine_group = db.Column(db.String(32), index=True)
     medicine_active_element = db.Column(db.Text, index=True)
     medicine_unit = db.Column(db.String(32), index=True)

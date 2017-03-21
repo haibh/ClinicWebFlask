@@ -15,16 +15,21 @@ login_manager.session_protection = "strong"
 @login_required
 def index():
     form = PatientForm()
-    if form.validate_on_submit():
-        if form.view_all.data:
-            flash('VIEW ALL')
-        elif form.add_new.data:
+    patients = []
+
+    if form.view_all.data:
+        flash('VIEW ALL')
+        patients = models.Patient.query.all()
+
+    elif form.add_new.data:
+        if form.validate_on_submit():
             flash('ADD NEW')
-    else:
-        flash(u'Vui lòng điền thông tin')
+        else:
+            flash(u'Vui lòng điền thông tin')
 
     return render_template('index.html',
-                           form=form)
+                           form=form,
+                           patients=patients)
 
 
 @app.route('/login', methods=['POST', 'GET'])

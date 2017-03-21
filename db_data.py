@@ -12,13 +12,13 @@ user2 = models.User('bhh', 'bhh')
 db.session.add(user1)
 db.session.add(user2)
 
-patient1 = models.Patient('BHH', '098', '32', '1985', 'dep trai', 'dep trai')
-patient2 = models.Patient('TheMoon', '0923', '23', '2321', 'dep gai', 'dep gai')
+patient1 = models.Patient('BHH', '098', '32', '1985', u'đẹp trai', u'đẹp trai')
+patient2 = models.Patient('TheMoon', '0923', '23', '2321', u'dep gai', u'dep gai')
 db.session.add(patient1)
 db.session.add(patient2)
 
-medicine1 = models.Medicine('aspirin', 'cam', 'haha', 'co gi dau', 'hop', 10, 10000)
-medicine2 = models.Medicine('toplexin', 'ho', 'haha', 'co gi adsfasdfdau', 'vi', 130, 25400)
+medicine1 = models.Medicine('aspirin', 'cam', 'haha', u'co gi dau', u'hop', 10, 10000)
+medicine2 = models.Medicine('toplexin', 'ho', 'haha', u'co gi adsfasdfdau', u'vi', 130, 25400)
 db.session.add(medicine1)
 db.session.add(medicine2)
 
