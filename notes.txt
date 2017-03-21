@@ -23,7 +23,38 @@ Tiền căn gia đình   - patientFamilyHistory
 Mô tả bệnh          - patientDescription
 Chẩn đoán           - patientDiagnostic
 
+An:
+- Gửi file Excel các thông tin cần lưu của thuốc (nhóm thuốc, đơn vị, giá tiền, hàm lượng, cách dùng, ...)
+- Gửi danh mục các xét nghiệm cần thực hiện (làm ở ngoài)
 
+
+Hải:
+- Sửa
+	* Lịch sử điều trị => Tiền căn (Cá nhân, Gia Đình)
+	* Điều trị: Bệnh sử và Khám lâm sàng
+	* Chuẩn => Chẩn
+- Thêm xét nghiệm:
+	* Liệt kê các xét nghiệm cần làm
+	* Giữ Chẩn đoán
+	* Giá tiền
+	* Thông tin bệnh nhân
+- Thêm kê toa
+	* Thông tih bệnh nhân
+	* Giữ chẩn đoán
+	* Thuốc: tên thuốc, hàm lượng, đơn vị, (viên/vỉ/ống), Số lượng, cách dùng, Đơn vị tiền
+- Thông tin bệnh nhân
+	* Thêm Giới tính
+	* thứ tự: Tên - Tuổi - Giới - Địa chỉ - Điện thoại (bỏ CMND)
+- Lịch sử khám bệnh:
+	* Ngày khám
+	* Bác sĩ
+	* Chẩn đoán
+- Thêm thời gian để search:
+	* Hôm nay
+	* Tuần này
+	* Tháng này
+	* Quý này
+	* Năm này
 
 pyinstaller --onefile --windowed ClicnicApp.py
 

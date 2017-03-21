@@ -11,9 +11,6 @@
 <body>
 {{ current_user.is_authenticated }}
 
-
-
-
 {% if current_user.is_authenticated %}
     <div class="header">
         <nav>
@@ -22,7 +19,7 @@
                 <li role="presentation"><a href="/medicine">Thuốc</a></li>
                 <li role="presentation"><a href="/diagnostic">Chẩn đoán</a></li>
                 <li role="presentation"><a href="/treatment">Điều trị</a></li>
-                <li role="presentation"><a href='/logout'>Log out</a></li>
+                <li role="presentation"><a href='/logout'>Đăng suất</a></li>
             </ul>
         </nav>
         <h1 class="text-muted">Phòng mạch</h1>
@@ -32,13 +29,30 @@
 
 {% endif %}
 
-{% with messages = get_flashed_messages() %}
+{#{% with messages = get_flashed_messages() %}#}
+{#    {% if messages %}#}
+{#        <ul>#}
+{#            {% for message in messages %}#}
+{#                <li>{{ message }} </li>#}
+{#            {% endfor %}#}
+{#        </ul>#}
+{#    {% endif %}#}
+{#{% endwith %}#}
+
+{% with messages = get_flashed_messages(with_categories=true) %}
     {% if messages %}
-        <ul>
-            {% for message in messages %}
-                <li>{{ message }} </li>
-            {% endfor %}
-        </ul>
+        {% for message in messages %}
+            {% if "Error" not in message[1] %}
+                <div class="alert alert-info">
+                    <strong>{{ message }} </strong>
+                </div>
+            {% endif %}
+            {% if "Error" in message[1] %}
+                <div class="alert alert-warning">
+                    <strong>{{ message }} </strong>
+                </div>
+            {% endif %}
+        {% endfor %}
     {% endif %}
 {% endwith %}
 

@@ -25,7 +25,7 @@ def index():
         if form.validate_on_submit():
             flash('ADD NEW')
         else:
-            flash(u'Vui lòng điền thông tin')
+            flash("Error: Vui lòng điền thông tin")
 
     return render_template('index.html',
                            form=form,
@@ -52,7 +52,7 @@ def login():
             #     return abort(400)
             return redirect(next or url_for('index'))
         else:
-            flash("Wrong username/password")
+            flash("Error: Wrong username/password")
 
     return render_template('login.html',
                            form=form)

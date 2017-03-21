@@ -1,14 +1,14 @@
 #!/usr/bin/python
 # -*- coding: utf8 -*-
 from flask_wtf import FlaskForm
-from wtforms import StringField, BooleanField, PasswordField, validators, SubmitField
+from wtforms import Form, TextField, TextAreaField, validators, StringField, SubmitField, PasswordField, BooleanField
 from wtforms.validators import DataRequired
 
 
 class LoginForm(FlaskForm):
-    username = StringField('username', validators=[DataRequired()])
-    password = PasswordField('password', validators=[DataRequired()])
-    remember_me = BooleanField('remember_me', default=False)
+    username = StringField(u'username', validators=[DataRequired()])
+    password = PasswordField(u'password', validators=[DataRequired()])
+    remember_me = BooleanField(u'remember_me', default=False)
 
 
 class PatientForm(FlaskForm):
