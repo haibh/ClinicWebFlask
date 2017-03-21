@@ -3,12 +3,14 @@
 <script src="/static/jquery.js"></script>
 <link href="/static/bootstrap.css" rel="stylesheet">
 <script src="/static/bootstrap.js"></script>
+<script src="/static/custom.js"></script>
 
 <script>
     $(".nav li").on("click", function() {
       $(".nav li").removeClass("active");
       $(this).addClass("active");
     });
+
 </script>
 
 <head>
@@ -29,7 +31,7 @@
             </div>
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav">
-                    <li class="active" id="patient"><a href="/index">Bệnh nhân</a></li>
+                    <li class="active"><a href="/index">Bệnh nhân</a></li>
                     <li class=""><a href="/medicine">Thuốc</a></li>
                     <li class=""><a href="/diagnostic">Chẩn đoán</a></li>
                     <li class=""><a href="/treatment">Điều trị</a></li>
@@ -37,7 +39,7 @@
                 <ul class="nav navbar-nav navbar-right">
                     <li><a> Xin chào, <strong> {{ current_user.username }} </strong> </a></li>
                     <li>
-                        <a href='/logout'> <span style="color:red">Đăng xuất</span></a>
+                        <a href='/logout'> <span style="color:red"><strong> Đăng xuất </strong></span></a>
                     </li>
 
                 </ul>
