@@ -69,6 +69,12 @@ class Patient(db.Model):
         self.patient_history = history
         self.patient_family_history = familiy_history
 
+    def get_id(self):
+        try:
+            return unicode(self.id)  # python 2
+        except NameError:
+            return str(self.id)  # python 3
+
     def __repr__(self):
         return '<Patient %r>' % (self.patient_name)
 

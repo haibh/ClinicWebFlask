@@ -1,16 +1,18 @@
 from flask import Flask
-from flask import Flask, flash, redirect, render_template, request, session, abort
+from flask import Flask, flash, redirect, render_template, request, session, abort, url_for
 import os
 
-from app import app
+from app import app, db, models
 from .forms import LoginForm
+from config import SQLALCHEMY_DATABASE_URI
 
 
 @app.route('/')
 @app.route('/index')
 def index():
     if not session.get('logged_in'):
-        return redirect('/login')
+        # return redirect('/login')
+        return redirect(url_for('login'))
     else:
         return render_template('index.html',
                                title='Clinic Management',
@@ -23,14 +25,18 @@ def login():
     form = LoginForm()
     session['logged_in'] = False
     if form.validate_on_submit():
-        if form.username.data == '1' and form.password.data == '1':
+
+        # Query & Login
+        user_query = models.User.query.filter_by(username=form.username.data).first()
+        if user_query.username == form.username.data and user_query.password == form.password.data:
             flash('Login requested for username="%s",password="%s" remember_me=%s' %
                   (form.username.data, form.password.data, str(form.remember_me.data)))
             session['logged_in'] = True
             session['username'] = form.username.data
-            return redirect('/index')
+            return redirect(url_for('index'))
         else:
             flash("Wrong username/password")
+
     return render_template('login.html',
                            title='Sign In',
                            form=form,
@@ -38,19 +44,8 @@ def login():
                            logged_in=session['logged_in'])
 
 
-    # if form.username.data == '1' and form.password.data == '1':
-    #     session['logged_in'] = True
-    #     session['username'] = request.form['username']
-    #     flash('Login requested for username="%s",password="%s" remember_me=%s' %
-    #           (form.username.data, form.password.data, str(form.remember_me.data)))
-    # else:
-    #     flash('Wrong login')
-    # return index()
-
-    # return redirect('/index')
-
-
 @app.route("/logout")
 def logout():
     session['logged_in'] = False
-    return redirect('/login')
+    # return redirect('/login')
+    return redirect(url_for('login'))
