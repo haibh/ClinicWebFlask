@@ -1,14 +1,14 @@
 {#<link rel="stylesheet" href="/static/style.css" type="text/css">#}
-{#{% extends "base.html" %}#}
+{% extends "base.html" %}
 
 {% block content %}
-    <h1>Vui lòng đăng nhập</h1>
+    <h1>Trang đăng nhập</h1>
     <form action="" method="POST" name="login">
         {{ form.hidden_tag() }}
         <p> Tên: {{ form.username }}<br>
             Mật khẩu: {{ form.password }}<br>
         </p>
-        <p>{{ form.remember_me }} Remember Me</p>
+        <p>{{ form.remember_me }} Ghi nhớ</p>
         <p><input type="submit" value="Sign In"></p>
     </form>
 {% endblock %}

@@ -7,8 +7,8 @@
     {% endif %}
 </head>
 <body>
-    {{ logged_in }}
-    <div><a href="/index">Home</a></div>
+    {{ current_user.is_authenticated }}
+    <div><a href="/index">Trang chủ</a></div>
 
     {% with messages = get_flashed_messages() %}
       {% if messages %}

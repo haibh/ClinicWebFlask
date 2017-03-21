@@ -1,6 +1,8 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1>Clinic Management</h1>
-    <h2>Hello, {{ user }}! <a href='/logout'>Log out</a></h2>
+    <h1>Quản lý bệnh nhân</h1>
+    {% if current_user.is_authenticated %}
+        <h2>Hello, {{ current_user.username }}! <a href='/logout'>Log out</a></h2>
+    {% endif %}
 {% endblock %}

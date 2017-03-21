@@ -29,9 +29,10 @@
 
 from datetime import datetime
 from app import db
+from flask_login import UserMixin
 
 
-class User(db.Model):
+class User(db.Model,UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(32), index=True, unique=True)
     password = db.Column(db.String(32), index=True, unique=True)
@@ -44,11 +45,7 @@ class User(db.Model):
     def __repr__(self):
         return '<User %r>' % (self.username)
 
-    def get_id(self):
-        try:
-            return unicode(self.id)  # python 2
-        except NameError:
-            return str(self.id)  # python 3
+
 
     def is_authenticated(self):
         """Return True if the user is authenticated."""
@@ -63,11 +60,16 @@ class User(db.Model):
         return False
 
     def get_id(self):
-        return unicode(self.id)
+        try:
+            return unicode(self.id)  # python 2
+        except NameError:
+            return str(self.id)  # python 3
+    # def get_id(self):
+    #     return unicode(self.session_token)
 
-    def _get_password(self):
-        return self._password
-
+    # def _get_password(self):
+    #     return self._password
+    #
     #
     # def _set_password(self, password):
     #     self._password = generate_password_hash(password)
