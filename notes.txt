@@ -47,3 +47,7 @@ u = models.User.query.get(1)
 >>> db.session.commit()
 
     posts = g.user.followed_posts().paginate(1, 3, False).items
+
+
+flaskenv\scripts\python db_create.py
+flaskenv\scripts\python db_data.py

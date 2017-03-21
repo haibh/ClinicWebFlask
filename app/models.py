@@ -1,38 +1,9 @@
-# from sqlalchemy import *
-# from sqlalchemy import create_engine, ForeignKey
-# from sqlalchemy import Column, Date, Integer, String
-# from sqlalchemy.ext.declarative import declarative_base
-# from sqlalchemy.orm import relationship, backref
-#
-# engine = create_engine('sqlite:///tutorial.db', echo=True)
-# Base = declarative_base()
-#
-#
-# ########################################################################
-# class User(Base):
-#     """"""
-#     __tablename__ = "users"
-#
-#     id = Column(Integer, primary_key=True)
-#     username = Column(String)
-#     password = Column(String)
-#
-#     # ----------------------------------------------------------------------
-#     def __init__(self, username, password):
-#         """"""
-#         self.username = username
-#         self.password = password
-#
-#
-# # create tables
-# Base.metadata.create_all(engine)
-
 from datetime import datetime
 from app import db
 from flask_login import UserMixin
 
 
-class User(db.Model,UserMixin):
+class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(32), index=True, unique=True)
     password = db.Column(db.String(32), index=True, unique=True)
@@ -44,8 +15,6 @@ class User(db.Model,UserMixin):
 
     def __repr__(self):
         return '<User %r>' % (self.username)
-
-
 
     def is_authenticated(self):
         """Return True if the user is authenticated."""
@@ -64,24 +33,24 @@ class User(db.Model,UserMixin):
             return unicode(self.id)  # python 2
         except NameError:
             return str(self.id)  # python 3
-    # def get_id(self):
-    #     return unicode(self.session_token)
+            # def get_id(self):
+            #     return unicode(self.session_token)
 
-    # def _get_password(self):
-    #     return self._password
-    #
-    #
-    # def _set_password(self, password):
-    #     self._password = generate_password_hash(password)
-    #
-    # password = db.synonym('_password',
-    #                       descriptor=property(_get_password,
-    #                                           _set_password))
-    #
-    # def check_password(self, password):
-    #     if self.password is None:
-    #         return False
-    #     return check_password_hash(self.password, password)
+            # def _get_password(self):
+            #     return self._password
+            #
+            #
+            # def _set_password(self, password):
+            #     self._password = generate_password_hash(password)
+            #
+            # password = db.synonym('_password',
+            #                       descriptor=property(_get_password,
+            #                                           _set_password))
+            #
+            # def check_password(self, password):
+            #     if self.password is None:
+            #         return False
+            #     return check_password_hash(self.password, password)
 
 
 class Patient(db.Model):

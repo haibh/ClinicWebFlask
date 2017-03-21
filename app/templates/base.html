@@ -1,22 +1,35 @@
 <html>
+{#<link rel="stylesheet" href="/static/style.css" type="text/css">#}
+<script src="/static/jquery.js"></script>
+<link href="/static/bootstrap.css" rel="stylesheet">
+<script src="/static/bootstrap.js"></script>
+
+
 <head>
-    {% if title %}
-        <title>Quản lý phòng mạch</title>
-    {% else %}
-        <title>NO TITLE</title>
-    {% endif %}
+    <title>Quản lý phòng mạch</title>
 </head>
 <body>
 {{ current_user.is_authenticated }}
+
+
+
+
 {% if current_user.is_authenticated %}
-    <div>
-        <a href="/index">Trang chủ</a>
-        <a href="/medicine">Thuốc</a>
-        <a href="/diagnostic">Chẩn đoán</a>
-        <a href="/treatment">Điều trị</a>
-        Hello, {{ current_user.username }}
-        <a href='/logout'>Log out</a>
+    <div class="header">
+        <nav>
+            <ul class="nav nav-pills pull-right">
+                <li role="presentation"><a href="/index">Trang chủ</a></li>
+                <li role="presentation"><a href="/medicine">Thuốc</a></li>
+                <li role="presentation"><a href="/diagnostic">Chẩn đoán</a></li>
+                <li role="presentation"><a href="/treatment">Điều trị</a></li>
+                <li role="presentation"><a href='/logout'>Log out</a></li>
+            </ul>
+        </nav>
+        <h1 class="text-muted">Phòng mạch</h1>
+        <h3>Hello, {{ current_user.username }}</h3>
+
     </div>
+
 {% endif %}
 
 {% with messages = get_flashed_messages() %}
