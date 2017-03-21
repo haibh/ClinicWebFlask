@@ -44,6 +44,43 @@ class User(db.Model):
     def __repr__(self):
         return '<User %r>' % (self.username)
 
+    def get_id(self):
+        try:
+            return unicode(self.id)  # python 2
+        except NameError:
+            return str(self.id)  # python 3
+
+    def is_authenticated(self):
+        """Return True if the user is authenticated."""
+        return self.authenticated
+
+    def is_active(self):
+        """True, as all users are active."""
+        return True
+
+    def is_anonymous(self):
+        """False, as anonymous users aren't supported."""
+        return False
+
+    def get_id(self):
+        return unicode(self.id)
+
+    def _get_password(self):
+        return self._password
+
+    #
+    # def _set_password(self, password):
+    #     self._password = generate_password_hash(password)
+    #
+    # password = db.synonym('_password',
+    #                       descriptor=property(_get_password,
+    #                                           _set_password))
+    #
+    # def check_password(self, password):
+    #     if self.password is None:
+    #         return False
+    #     return check_password_hash(self.password, password)
+
 
 class Patient(db.Model):
     # __bind_key__ = 'patient'
@@ -68,12 +105,6 @@ class Patient(db.Model):
         self.patient_birth_year = birthyear
         self.patient_history = history
         self.patient_family_history = familiy_history
-
-    def get_id(self):
-        try:
-            return unicode(self.id)  # python 2
-        except NameError:
-            return str(self.id)  # python 3
 
     def __repr__(self):
         return '<Patient %r>' % (self.patient_name)

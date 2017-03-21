@@ -1,8 +1,9 @@
 from flask import Flask
 from flask import Flask, flash, redirect, render_template, request, session, abort, url_for
 import os
+from flask_login import login_user, logout_user, current_user, login_required
 
-from app import app, db, models
+from app import app, db, models, login_manager
 from .forms import LoginForm
 from config import SQLALCHEMY_DATABASE_URI
 
@@ -31,8 +32,13 @@ def login():
         if user_query.username == form.username.data and user_query.password == form.password.data:
             flash('Login requested for username="%s",password="%s" remember_me=%s' %
                   (form.username.data, form.password.data, str(form.remember_me.data)))
+
             session['logged_in'] = True
             session['username'] = form.username.data
+
+            user_query.authenticated = True
+            login_user(user_query, remember=True)  # Register to login user
+
             return redirect(url_for('index'))
         else:
             flash("Wrong username/password")
@@ -47,5 +53,27 @@ def login():
 @app.route("/logout")
 def logout():
     session['logged_in'] = False
-    # return redirect('/login')
+
+    user = current_user
+    user.authenticated = False
+    db.session.add(user)
+    db.session.commit()
+    logout_user()
+
+
     return redirect(url_for('login'))
+
+
+@login_manager.user_loader
+def load_user(id):
+    """Given *user_id*, return the associated User object.
+
+    :param unicode user_id: user_id user to retrieve
+    """
+    return models.User.query.get(int(id))
+
+
+@app.route('/new', methods=['GET', 'POST'])
+@login_required
+def new():
+    return 'NEWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW'
