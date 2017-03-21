@@ -1,8 +1,15 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1>Quản lý bệnh nhân</h1>
     {% if current_user.is_authenticated %}
-        <h2>Hello, {{ current_user.username }}! <a href='/logout'>Log out</a></h2>
+        <h1>Quản lý bệnh nhân</h1>
+{#        <form action="" method="POST" name="login">#}
+{#            {{ form.hidden_tag() }}#}
+{#            <p> Tên: {{ form.username }}<br>#}
+{#                Mật khẩu: {{ form.password }}<br>#}
+{#            </p>#}
+{#            <p>{{ form.remember_me }} Ghi nhớ</p>#}
+{#            <p><input type="submit" value="Sign In"></p>#}
+{#        </form>#}
     {% endif %}
 {% endblock %}

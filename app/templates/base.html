@@ -7,19 +7,28 @@
     {% endif %}
 </head>
 <body>
-    {{ current_user.is_authenticated }}
-    <div><a href="/index">Trang chủ</a></div>
+{{ current_user.is_authenticated }}
+{% if current_user.is_authenticated %}
+    <div>
+        <a href="/index">Trang chủ</a>
+        <a href="/medicine">Thuốc</a>
+        <a href="/diagnostic">Chẩn đoán</a>
+        <a href="/treatment">Điều trị</a>
+        Hello, {{ current_user.username }}
+        <a href='/logout'>Log out</a>
+    </div>
+{% endif %}
 
-    {% with messages = get_flashed_messages() %}
-      {% if messages %}
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
         <ul>
-        {% for message in messages %}
-            <li>{{ message }} </li>
-        {% endfor %}
+            {% for message in messages %}
+                <li>{{ message }} </li>
+            {% endfor %}
         </ul>
-      {% endif %}
-    {% endwith %}
+    {% endif %}
+{% endwith %}
 
-    {% block content %}{% endblock %}
+{% block content %}{% endblock %}
 </body>
 </html>
