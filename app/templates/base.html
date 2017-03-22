@@ -1,9 +1,10 @@
 <html>
-{#<link rel="stylesheet" href="/static/style.css" type="text/css">#}
+<meta charset="UTF-8">
+<link rel="stylesheet" href="/static/style.css" type="text/css">
 <script src="/static/jquery.js"></script>
 <link href="/static/bootstrap.css" rel="stylesheet">
 <script src="/static/bootstrap.js"></script>
-<script src="/static/custom.js"></script>
+{#<script src="/static/custom.js"></script>#}
 
 <head>
     <title>Quản lý phòng mạch</title>
@@ -11,7 +12,6 @@
 <body>
 {% if current_user.is_authenticated %}
 
-</div>
     <nav class="navbar navbar-inverse">
         <div class="container-fluid">
             <div class="navbar-header">
@@ -39,6 +39,7 @@
             </div>
         </div>
     </nav>
+    </div>
 
 {% endif %}
 
@@ -57,12 +58,12 @@
         {% for message in messages %}
             {% if "Error" not in message[1] %}
                 <div class="alert alert-info">
-                    <strong>{{ message[1].decode('utf-8') }} </strong>
+                    <strong>{{ message[1] }} </strong>
                 </div>
             {% endif %}
             {% if "Error" in message[1] %}
                 <div class="alert alert-warning">
-                    <strong>{{ message[1].decode('utf-8') }} </strong>
+                    <strong>{{ message[1] }} </strong>
                 </div>
             {% endif %}
         {% endfor %}

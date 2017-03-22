@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% import "_render_login_field.html" as login_field %}
+{% import "_render_field.html" as render_field %}
 
 {% block content %}
     {% if current_user.is_authenticated %}
@@ -19,10 +19,10 @@
                 <div class="login-message">
                     <h1>Đăng nhập</h1>
                 </div>
-                {% call login_field.render_form(form, action_url=url_for('login'), action_text='Đăng nhập',class_='login-form') %}
-                    {{ login_field.render_field(form.username, label_visible=false, placeholder='Tên đăng nhập', type='text') }}
-                    {{ login_field.render_field(form.password, label_visible=false, placeholder='Mật khẩu', type='password') }}
-                    {{ login_field.render_checkbox_field(form.remember_me) }}
+                {% call render_field.render_form(form, action_url=url_for('login'), action_text='Đăng nhập',class_='login-form') %}
+                    {{ render_field.render_field(form.username, label_visible=false, placeholder='Tên đăng nhập', type='text') }}
+                    {{ render_field.render_field(form.password, label_visible=false, placeholder='Mật khẩu', type='password') }}
+                    {{ render_field.render_checkbox_field(form.remember_me) }}
                 {% endcall %}
             </div>
         </div>
