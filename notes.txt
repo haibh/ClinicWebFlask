@@ -82,3 +82,7 @@ u = models.User.query.get(1)
 
 flaskenv\scripts\python db_create.py
 flaskenv\scripts\python db_data.py
+
+
+env\scripts\python.exe db_create.py
+env\scripts\python.exe db_data.py

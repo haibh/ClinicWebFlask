@@ -23,6 +23,17 @@ def index():
 
     elif form.add_new.data:
         if form.validate_on_submit():
+            patient_new = models.Patient(form.patient_name.data,
+                                         form.patient_phone.data,
+                                         form.patient_age.data,
+                                         form.patient_birth_year.data,
+                                         form.patient_history.data,
+                                         form.patient_family_history.data)
+            db.session.add(patient_new)
+            db.session.commit()
+
+            patients = [patient_new]
+            print patients
 
             flash(u'Thêm mới thành công')
 

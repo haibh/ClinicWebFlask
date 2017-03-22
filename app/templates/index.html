@@ -17,15 +17,6 @@
             </p>
             {{ form.view_all }}
             {{ form.add_new }}
-            <br>
-            {% for patient in patients %}
-                <li>{{ patient.patient_name }}
-                    {{ patient.patient_phone }}
-                    {{ patient.patient_age }}
-                    {{ patient.patient_birth_year }}
-                    {{ patient.patient_history }}
-                    {{ patient.patient_family_history }} </li>
-            {% endfor %}
         </form>
 
         <div class="table-responsive">
