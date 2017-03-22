@@ -4,7 +4,7 @@
 
 {% block content %}
     {% if current_user.is_authenticated %}
-        <h1>Quản lý bệnh nhân</h1>
+        <h3>Quản lý bệnh nhân</h3>
         <form action="" method="POST" name="patient">
             {{ form.hidden_tag() }}
             <p>
@@ -16,8 +16,11 @@
                 {{ render.render_field(form.patient_history, label_visible=false, placeholder='Lịch sử', type='text') }}
                 {{ render.render_field(form.patient_family_history, label_visible=false, placeholder='Lịch sử gia đình', type='text') }}
             </p>
+            {{ form.refresh }}
             {{ form.view_all }}
             {{ form.add_new }}
+            {{ form.update }}
+            {{ form.delete }}
         </form>
 
         <div class="table-responsive">
@@ -45,7 +48,7 @@
                         <td class="text-left"> {{ patient.patient_history }}</td>
                         <td class="text-left"> {{ patient.patient_family_history }}</td>
                         <td class="text-left">
-                            <button type="button" class="use-address btn btn-default">Chỉnh sửa</button>
+                            <button type="button" class="edit-patient btn btn-default">Chỉnh sửa</button>
                         </td>
 
                     </tr>

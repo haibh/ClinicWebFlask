@@ -20,8 +20,11 @@ class PatientForm(FlaskForm):
     patient_history = StringField('patient_history', validators=[DataRequired()])
     patient_family_history = StringField('patient_family_history', validators=[DataRequired()])
 
+    refresh = SubmitField(u'Làm mới')
     view_all = SubmitField(u'Xem tất cả')
     add_new = SubmitField(u'Thêm mới')
+    update = SubmitField(u'Cập nhật')
+    delete = SubmitField(u'Xóa bệnh nhân')
 
 
 class MedicineForm(FlaskForm):

@@ -17,6 +17,9 @@ def index():
     form = PatientForm()
     patients = []
 
+    if form.refresh.data:
+        flash(u'Làm sạch thông tin OK')
+
     if form.view_all.data:
         flash(u'Xem tất cả')
         patients = models.Patient.query.all()

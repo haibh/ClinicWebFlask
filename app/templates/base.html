@@ -86,9 +86,8 @@
     {% if messages %}
         {% for message in messages %}
             {% if "Error" not in message[1] %}
-                <div class="alert alert-info">
-                    <strong>{{ message[1] }} </strong>
-                </div>
+
+                <span class="alert alert-info">{{ message[1] }}</span>
             {% endif %}
             {% if "Error" in message[1] %}
                 <div class="alert alert-warning">
@@ -126,7 +125,7 @@
 </script>
 
 <script>
-    $(".use-address").click(function () {
+    $(".edit-patient").click(function () {
         var $row = $(this).closest("tr");    // Find the row
         var $tds = $row.find("td");
         $("#patient_id").val($tds[0].innerHTML);
@@ -140,6 +139,18 @@
         $.each($tds, function () {
             console.log($(this).text());
         });
+    });
+</script>
+
+<script>
+    $("#refresh").click(function () {
+        $("#patient_id").val('');
+        $("#patient_name").val('');
+        $("#patient_phone").val('');
+        $("#patient_age").val('');
+        $("#patient_birth_year").val('');
+        $("#patient_history").val('');
+        $("#patient_family_history").val('');
     });
 </script>
 
