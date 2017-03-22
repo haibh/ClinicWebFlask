@@ -4,6 +4,7 @@
 <script src="/static/jquery.js"></script>
 <link href="/static/bootstrap.css" rel="stylesheet">
 <script src="/static/bootstrap.js"></script>
+<script src="/static/jquery.dataTables.js"></script>
 {#<script src="/static/custom.js"></script>#}
 
 
@@ -115,4 +116,11 @@
             console.log($(this).text());
         });
     });
+</script>
+
+
+<script>
+    $(document).ready(function() {
+    $('#patient_table').DataTable();
+} );
 </script>

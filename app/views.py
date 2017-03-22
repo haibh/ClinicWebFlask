@@ -23,7 +23,9 @@ def index():
 
     elif form.add_new.data:
         if form.validate_on_submit():
-            flash(u'Thêm mới')
+
+            flash(u'Thêm mới thành công')
+
         else:
             flash(u"Error: Vui lòng điền thông tin")
 
