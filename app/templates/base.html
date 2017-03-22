@@ -21,7 +21,6 @@
 
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="http://getbootstrap.com/favicon.ico">
 
     <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/bootstrap.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/datatables.min.css') }}">
@@ -36,8 +35,8 @@
     <script type="text/javascript" src="{{ url_for('static', filename='js/jquery.js') }}"></script>
     <script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.js') }}"></script>
     <script type="text/javascript" src="{{ url_for('static', filename='js/datatables.min.js') }}"></script>
-{#    <script type="text/javascript" src="{{ url_for('static', filename='js/dataTables.bootstrap.js') }}"></script>#}
-{#    <script type="text/javascript" src="{{ url_for('static', filename='js/jquery.dataTables.js') }}"></script>#}
+    <script type="text/javascript" src="{{ url_for('static', filename='js/custom.js') }}"></script>
+
 
 {% if current_user.is_authenticated %}
 
@@ -86,8 +85,9 @@
     {% if messages %}
         {% for message in messages %}
             {% if "Error" not in message[1] %}
-
-                <span class="alert alert-info">{{ message[1] }}</span>
+                <div class="alert alert-info">
+                    <strong>{{ message[1] }} </strong>
+                </div>
             {% endif %}
             {% if "Error" in message[1] %}
                 <div class="alert alert-warning">

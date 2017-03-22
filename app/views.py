@@ -4,6 +4,7 @@
 from flask import Flask, g, flash, redirect, render_template, request, session, abort, url_for
 from flask_login import login_user, logout_user, current_user, login_required
 from app import app, db, models, login_manager
+from models import Patient, Medicine, Treatment, Diagnostic
 from .forms import LoginForm, PatientForm, DiagnosticForm, MedicineForm, TreatmentForm
 
 login_manager.login_message = u"Vui lòng đăng nhập"
@@ -15,31 +16,60 @@ login_manager.session_protection = "strong"
 @login_required
 def index():
     form = PatientForm()
-    patients = []
-
-    if form.refresh.data:
-        flash(u'Làm sạch thông tin OK')
+    patients = Patient.query.all()
+    #
+    # if form.refresh.data:
+    #     flash(u'Làm sạch thông tin OK')
 
     if form.view_all.data:
         flash(u'Xem tất cả')
-        patients = models.Patient.query.all()
+        patients = Patient.query.all()
 
     elif form.add_new.data:
         if form.validate_on_submit():
-            patient_new = models.Patient(form.patient_name.data,
+            new_patient = Patient(form.patient_name.data,
                                          form.patient_phone.data,
                                          form.patient_age.data,
                                          form.patient_birth_year.data,
                                          form.patient_history.data,
                                          form.patient_family_history.data)
-            db.session.add(patient_new)
+            db.session.add(new_patient)
             db.session.commit()
 
-            patients = [patient_new]
-            print patients
-
+            patients = [new_patient]
             flash(u'Thêm mới thành công')
+        else:
+            flash(u"Error: Vui lòng điền thông tin")
 
+    elif form.update.data:
+        if form.validate_on_submit():
+            updated_patient = models.Patient.query.filter_by(id=int(form.patient_id.data)).first()
+
+            updated_patient.patient_name = form.patient_name.data
+            updated_patient.patient_phone = form.patient_phone.data
+            updated_patient.patient_age = form.patient_age.data
+            updated_patient.patient_birth_year = form.patient_birth_year.data
+            updated_patient.patient_history = form.patient_history.data
+            updated_patient.patient_family_history = form.patient_family_history.data
+
+            db.session.commit()
+            print updated_patient
+
+            patients = [updated_patient]
+            flash(u'Cập nhật thành công')
+        else:
+            flash(u"Error: Vui lòng điền thông tin")
+
+    elif form.delete.data:
+        if form.validate_on_submit():
+            delete_patient = models.Patient.query.filter_by(id=int(form.patient_id.data)).first()
+            print delete_patient
+
+            db.session.delete(delete_patient)
+            db.session.commit()
+            
+            patients = [delete_patient]
+            flash(u'Xóa thành công')
         else:
             flash(u"Error: Vui lòng điền thông tin")
 

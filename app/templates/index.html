@@ -4,11 +4,11 @@
 
 {% block content %}
     {% if current_user.is_authenticated %}
-        <h3>Quản lý bệnh nhân</h3>
+        <h3>Quản lý bệnh nhân </h3> {{ form.refresh }}
         <form action="" method="POST" name="patient">
             {{ form.hidden_tag() }}
             <p>
-                {{ render.render_field(form.patient_id, label_visible=false, placeholder='Mã số', type='text') }}
+                {{ render.render_field(form.patient_id, label_visible=false, placeholder='Mã số (Thêm mới thì ko cần điền)', type='text') }}
                 {{ render.render_field(form.patient_name, label_visible=false, placeholder='Họ Tên', type='text') }}
                 {{ render.render_field(form.patient_phone, label_visible=false, placeholder='Điện thoại', type='text') }}
                 {{ render.render_field(form.patient_age, label_visible=false, placeholder='Năm sinh', type='text') }}
@@ -16,7 +16,7 @@
                 {{ render.render_field(form.patient_history, label_visible=false, placeholder='Lịch sử', type='text') }}
                 {{ render.render_field(form.patient_family_history, label_visible=false, placeholder='Lịch sử gia đình', type='text') }}
             </p>
-            {{ form.refresh }}
+
             {{ form.view_all }}
             {{ form.add_new }}
             {{ form.update }}
