@@ -4,6 +4,11 @@ from flask_login import LoginManager
 from flask_moment import Moment
 from flask_assets import assets, Environment
 
+# import ssl
+# context = ssl.SSLContext(ssl.PROTOCOL_TLSv1_2)
+# context.load_cert_chain('phongmachannghia.com.crt', 'phongmachannghia.com.key')
+
+
 
 app = Flask(__name__)
 app.config.from_object('config')

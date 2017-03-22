@@ -32,10 +32,10 @@
 </head>
 
 <body onload="startTime()">
-    <script type="text/javascript" src="{{ url_for('static', filename='js/jquery.js') }}"></script>
-    <script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.js') }}"></script>
-    <script type="text/javascript" src="{{ url_for('static', filename='js/datatables.min.js') }}"></script>
-    <script type="text/javascript" src="{{ url_for('static', filename='js/custom.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/jquery.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/datatables.min.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/custom.js') }}"></script>
 
 
 {% if current_user.is_authenticated %}
@@ -104,27 +104,6 @@
 
 
 <script>
-    function startTime() {
-        var today = new Date();
-        var h = today.getHours();
-        var m = today.getMinutes();
-        var s = today.getSeconds();
-        m = checkTime(m);
-        s = checkTime(s);
-        document.getElementById('clock_display').innerHTML =
-            h + ":" + m + ":" + s;
-        var t = setTimeout(startTime, 500);
-    }
-    function checkTime(i) {
-        if (i < 10) {
-            i = "0" + i
-        }
-        ;  // add zero in front of numbers < 10
-        return i;
-    }
-</script>
-
-<script>
     $(".edit-patient").click(function () {
         var $row = $(this).closest("tr");    // Find the row
         var $tds = $row.find("td");
@@ -154,8 +133,3 @@
     });
 </script>
 
-<script type="text/javascript" charset="utf-8">
-    $(document).ready(function () {
-        $('#patient_table').dataTable();
-    });
-</script>
