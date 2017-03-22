@@ -7,5 +7,4 @@ $(function () {
         $(".nav li").removeClass("active");
         $(this).addClass("active");
     });
-
 });

@@ -5,20 +5,13 @@
 <script src="/static/bootstrap.js"></script>
 <script src="/static/custom.js"></script>
 
-<script>
-    $(".nav li").on("click", function() {
-      $(".nav li").removeClass("active");
-      $(this).addClass("active");
-    });
-
-</script>
-
 <head>
     <title>Quản lý phòng mạch</title>
 </head>
 <body>
 {% if current_user.is_authenticated %}
 
+</div>
     <nav class="navbar navbar-inverse">
         <div class="container-fluid">
             <div class="navbar-header">
@@ -64,12 +57,12 @@
         {% for message in messages %}
             {% if "Error" not in message[1] %}
                 <div class="alert alert-info">
-                    <strong>{{ message }} </strong>
+                    <strong>{{ message[1].decode('utf-8') }} </strong>
                 </div>
             {% endif %}
             {% if "Error" in message[1] %}
                 <div class="alert alert-warning">
-                    <strong>{{ message }} </strong>
+                    <strong>{{ message[1].decode('utf-8') }} </strong>
                 </div>
             {% endif %}
         {% endfor %}

@@ -18,14 +18,14 @@ def index():
     patients = []
 
     if form.view_all.data:
-        flash('VIEW ALL')
+        flash(u'Xem tất cả')
         patients = models.Patient.query.all()
 
     elif form.add_new.data:
         if form.validate_on_submit():
-            flash('ADD NEW')
+            flash(u'Thêm mới')
         else:
-            flash("Error: Vui lòng điền thông tin")
+            flash(u"Error: Vui lòng điền thông tin")
 
     return render_template('index.html',
                            form=form,
