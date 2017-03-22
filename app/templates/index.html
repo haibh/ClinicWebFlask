@@ -6,12 +6,18 @@
         <h1>Quản lý bệnh nhân</h1>
         <form action="" method="POST" name="patient">
             {{ form.hidden_tag() }}
-            <p> Họ tên {{ render.render_field(form.patient_name, label_visible=false, placeholder='Họ Tên', type='text') }}
-                Điện thoại {{ render.render_field(form.patient_phone, label_visible=false, placeholder='Điện thoại', type='text') }}
-                Năm sinh {{ render.render_field(form.patient_age, label_visible=false, placeholder='Năm sinh', type='text') }}
-                Năm sinh {{ render.render_field(form.patient_birth_year, label_visible=false, placeholder='Năm sinh', type='text') }}
-                Lịch sử {{ render.render_field(form.patient_history, label_visible=false, placeholder='Lịch sử', type='text') }}
-                Lịch sử gia đình {{ render.render_field(form.patient_family_history, label_visible=false, placeholder='Lịch sử gia đình', type='text') }}
+            <p> Họ
+                tên {{ render.render_field(form.patient_name, label_visible=false, placeholder='Họ Tên', type='text') }}
+                Điện
+                thoại {{ render.render_field(form.patient_phone, label_visible=false, placeholder='Điện thoại', type='text') }}
+                Năm
+                sinh {{ render.render_field(form.patient_age, label_visible=false, placeholder='Năm sinh', type='text') }}
+                Năm
+                sinh {{ render.render_field(form.patient_birth_year, label_visible=false, placeholder='Năm sinh', type='text') }}
+                Lịch
+                sử {{ render.render_field(form.patient_history, label_visible=false, placeholder='Lịch sử', type='text') }}
+                Lịch sử gia
+                đình {{ render.render_field(form.patient_family_history, label_visible=false, placeholder='Lịch sử gia đình', type='text') }}
             </p>
             {{ form.view_all }}
             {{ form.add_new }}
@@ -27,27 +33,29 @@
             {% endfor %}
         </form>
 
-        <table class="table table-striped table-bordered table-hover table-responsive">
-            <thead>
-            <tr>
-                <th class="text-left">ID</th>
-                <th class="text-left">Tên</th>
-                <th class="text-left">Điện thoại</th>
-                <th class="text-left">Tuổi</th>
-                <th class="text-left">Năm sinh</th>
-            </tr>
-            </thead>
-            <tbody class="table-hover">
-            {% for patient in patients %}
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered table-hover">
+                <thead>
                 <tr>
-                    <td class="text-left"> {{ patient.id }}</td>
-                    <td class="text-left"> {{ patient.patient_name }}</td>
-                    <td class="text-left"> {{ patient.patient_phone }}</td>
-                    <td class="text-left"> {{ patient.patient_age }}</td>
-                    <td class="text-left"> {{ patient.patient_birth_year }}</td>
+                    <th class="text-left">ID</th>
+                    <th class="text-left">Tên</th>
+                    <th class="text-left">Điện thoại</th>
+                    <th class="text-left">Tuổi</th>
+                    <th class="text-left">Năm sinh</th>
                 </tr>
-            {% endfor %}
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                {% for patient in patients %}
+                    <tr>
+                        <td class="text-left"> {{ patient.id }}</td>
+                        <td class="text-left"> {{ patient.patient_name }}</td>
+                        <td class="text-left"> {{ patient.patient_phone }}</td>
+                        <td class="text-left"> {{ patient.patient_age }}</td>
+                        <td class="text-left"> {{ patient.patient_birth_year }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
     {% endif %}
 {% endblock %}
