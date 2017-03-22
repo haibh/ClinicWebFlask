@@ -12,6 +12,7 @@ class LoginForm(FlaskForm):
 
 
 class PatientForm(FlaskForm):
+    patient_id = StringField('patient_id', validators=[DataRequired()])
     patient_name = StringField('patient_name', validators=[DataRequired()])
     patient_phone = StringField('patient_phone', validators=[DataRequired()])
     patient_age = StringField('patient_age', validators=[DataRequired()])

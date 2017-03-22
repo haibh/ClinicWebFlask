@@ -10,7 +10,17 @@
 #}
 {% macro render_field(field, label_visible=true) -%}
 
-    <div class="form-group {% if field.errors %}has-error{% endif %} {{ kwargs.pop('class_', '') }}">
+{#    <div class="form-group {% if field.errors %}has-error{% endif %} {{ kwargs.pop('class_', '') }}">#}
+{#        {% if (field.type != 'HiddenField' and field.type !='CSRFTokenField') and label_visible %}#}
+{#            <label for="{{ field.id }}" class="control-label">{{ field.label }}</label>#}
+{#        {% endif %}#}
+{#        {{ field(class_='form-control', **kwargs) }}#}
+{#        {% if field.errors %}#}
+{#            {% for e in field.errors %}#}
+{#                <p class="help-block">{{ e }}</p>#}
+{#            {% endfor %}#}
+{#        {% endif %}#}
+{#    </div>#}
         {% if (field.type != 'HiddenField' and field.type !='CSRFTokenField') and label_visible %}
             <label for="{{ field.id }}" class="control-label">{{ field.label }}</label>
         {% endif %}
@@ -20,7 +30,6 @@
                 <p class="help-block">{{ e }}</p>
             {% endfor %}
         {% endif %}
-    </div>
 {%- endmacro %}
 
 {# Renders checkbox fields since they are represented differently in bootstrap

@@ -6,23 +6,18 @@
         <h1>Quản lý bệnh nhân</h1>
         <form action="" method="POST" name="patient">
             {{ form.hidden_tag() }}
-            <p> Họ
-                tên {{ render.render_field(form.patient_name, label_visible=false, placeholder='Họ Tên', type='text') }}
-                Điện
-                thoại {{ render.render_field(form.patient_phone, label_visible=false, placeholder='Điện thoại', type='text') }}
-                Năm
-                sinh {{ render.render_field(form.patient_age, label_visible=false, placeholder='Năm sinh', type='text') }}
-                Năm
-                sinh {{ render.render_field(form.patient_birth_year, label_visible=false, placeholder='Năm sinh', type='text') }}
-                Lịch
-                sử {{ render.render_field(form.patient_history, label_visible=false, placeholder='Lịch sử', type='text') }}
-                Lịch sử gia
-                đình {{ render.render_field(form.patient_family_history, label_visible=false, placeholder='Lịch sử gia đình', type='text') }}
+            <p>
+                {{ render.render_field(form.patient_id, label_visible=false, placeholder='Mã số', type='text') }}
+                {{ render.render_field(form.patient_name, label_visible=false, placeholder='Họ Tên', type='text') }}
+                {{ render.render_field(form.patient_phone, label_visible=false, placeholder='Điện thoại', type='text') }}
+                {{ render.render_field(form.patient_age, label_visible=false, placeholder='Năm sinh', type='text') }}
+                {{ render.render_field(form.patient_birth_year, label_visible=false, placeholder='Năm sinh', type='text') }}
+                {{ render.render_field(form.patient_history, label_visible=false, placeholder='Lịch sử', type='text') }}
+                {{ render.render_field(form.patient_family_history, label_visible=false, placeholder='Lịch sử gia đình', type='text') }}
             </p>
             {{ form.view_all }}
             {{ form.add_new }}
             <br>
-            {{ patients }}
             {% for patient in patients %}
                 <li>{{ patient.patient_name }}
                     {{ patient.patient_phone }}
@@ -42,6 +37,9 @@
                     <th class="text-left">Điện thoại</th>
                     <th class="text-left">Tuổi</th>
                     <th class="text-left">Năm sinh</th>
+                    <th class="text-left">Lịch sử</th>
+                    <th class="text-left">Lịch sử gia đình</th>
+                    <th class="text-left">Chức năng</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -52,6 +50,12 @@
                         <td class="text-left"> {{ patient.patient_phone }}</td>
                         <td class="text-left"> {{ patient.patient_age }}</td>
                         <td class="text-left"> {{ patient.patient_birth_year }}</td>
+                        <td class="text-left"> {{ patient.patient_history }}</td>
+                        <td class="text-left"> {{ patient.patient_family_history }}</td>
+                        <td class="text-left">
+                            <button type="button" class="use-address btn btn-default">Chỉnh sửa</button>
+                        </td>
+
                     </tr>
                 {% endfor %}
                 </tbody>

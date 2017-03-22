@@ -6,10 +6,13 @@
 <script src="/static/bootstrap.js"></script>
 {#<script src="/static/custom.js"></script>#}
 
+
 <head>
     <title>Quản lý phòng mạch</title>
+    {{ moment.include_jquery() }}
+    {{ moment.include_moment() }}
 </head>
-<body>
+<body onload="startTime()">
 {% if current_user.is_authenticated %}
 
     <nav class="navbar navbar-inverse">
@@ -30,6 +33,7 @@
                     <li class=""><a href="/treatment">Điều trị</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
+                    <li><a> <span id="clock_display" style="color:yellow"></span></a></li>
                     <li><a> Xin chào, <strong> {{ current_user.username }} </strong> </a></li>
                     <li>
                         <a href='/logout'> <span style="color:red"><strong> Đăng xuất </strong></span></a>
@@ -73,3 +77,42 @@
 {% block content %}{% endblock %}
 </body>
 </html>
+
+<script>
+    function startTime() {
+        var today = new Date();
+        var h = today.getHours();
+        var m = today.getMinutes();
+        var s = today.getSeconds();
+        m = checkTime(m);
+        s = checkTime(s);
+        document.getElementById('clock_display').innerHTML =
+            h + ":" + m + ":" + s;
+        var t = setTimeout(startTime, 500);
+    }
+    function checkTime(i) {
+        if (i < 10) {
+            i = "0" + i
+        }
+        ;  // add zero in front of numbers < 10
+        return i;
+    }
+</script>
+
+<script>
+    $(".use-address").click(function () {
+        var $row = $(this).closest("tr");    // Find the row
+        var $tds = $row.find("td");
+        $("#patient_id").val($tds[0].innerHTML);
+        $("#patient_name").val($tds[1].innerHTML);
+        $("#patient_phone").val($tds[2].innerHTML);
+        $("#patient_age").val($tds[3].innerHTML);
+        $("#patient_birth_year").val($tds[4].innerHTML);
+        $("#patient_history").val($tds[5].innerHTML);
+        $("#patient_family_history").val($tds[6].innerHTML);
+
+        $.each($tds, function () {
+            console.log($(this).text());
+        });
+    });
+</script>
