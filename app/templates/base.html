@@ -1,19 +1,44 @@
-<html>
-<meta charset="UTF-8">
-<link rel="stylesheet" href="/static/style.css" type="text/css">
-<script src="/static/jquery.js"></script>
-<link href="/static/bootstrap.css" rel="stylesheet">
-<script src="/static/bootstrap.js"></script>
-<script src="/static/jquery.dataTables.js"></script>
+<!DOCTYPE html>
+
+<html lang="en">
+
+{#<script src="/static/jquery.js"></script>#}
+{##}
+{##}
+{#<link href="/static/bootstrap.css" rel="stylesheet">#}
+{#<script type="text/javascript" src="/static/bootstrap.js"></script>#}
+{##}
+{##}
+{#<script type="text/javascript" src="/static/dataTables.bootstrap.js"></script>#}
+{#<script type="text/javascript" src="/static/jquery.dataTables.js"></script>#}
 {#<script src="/static/custom.js"></script>#}
 
 
 <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="http://getbootstrap.com/favicon.ico">
+
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/bootstrap.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/datatables.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/style.css') }}">
+
     <title>Quản lý phòng mạch</title>
     {{ moment.include_jquery() }}
     {{ moment.include_moment() }}
 </head>
+
 <body onload="startTime()">
+    <script type="text/javascript" src="{{ url_for('static', filename='js/jquery.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/datatables.min.js') }}"></script>
+{#    <script type="text/javascript" src="{{ url_for('static', filename='js/dataTables.bootstrap.js') }}"></script>#}
+{#    <script type="text/javascript" src="{{ url_for('static', filename='js/jquery.dataTables.js') }}"></script>#}
+
 {% if current_user.is_authenticated %}
 
     <nav class="navbar navbar-inverse">
@@ -44,7 +69,6 @@
             </div>
         </div>
     </nav>
-    </div>
 
 {% endif %}
 
@@ -78,6 +102,7 @@
 {% block content %}{% endblock %}
 </body>
 </html>
+
 
 <script>
     function startTime() {
@@ -118,9 +143,8 @@
     });
 </script>
 
-{##}
-{#<script>#}
-{#    $(document).ready(function () {#}
-{#        $('#patient_table').DataTable();#}
-{#    });#}
-{#</script>#}
+<script type="text/javascript" charset="utf-8">
+    $(document).ready(function () {
+        $('#patient_table').dataTable();
+    });
+</script>

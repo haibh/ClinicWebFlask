@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% import "_render_field.html" as render %}
 
+
 {% block content %}
     {% if current_user.is_authenticated %}
         <h1>Quản lý bệnh nhân</h1>
@@ -53,4 +54,6 @@
             </table>
         </div>
     {% endif %}
+
+
 {% endblock %}
