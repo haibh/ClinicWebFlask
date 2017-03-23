@@ -22,7 +22,6 @@ def index():
     #     flash(u'Làm sạch thông tin OK')
 
     if form.view_all.data:
-        flash(u'Xem tất cả')
         patients = Patient.query.all()
 
     elif form.add_new.data:
@@ -128,12 +127,11 @@ def medicine():
     medicines = Medicine.query.all()
 
     if form.view_all.data:
-        flash(u'Xem tất cả')
         medicines = Medicine.query.all()
 
     elif form.add_new.data:
         if form.validate_on_submit():
-            new_medicine = Patient(form.medicine_name.data,
+            new_medicine = Medicine(form.medicine_name.data,
                                    form.medicine_code.data,
                                    form.medicine_group.data,
                                    form.medicine_active_elements.data,
@@ -153,7 +151,7 @@ def medicine():
 
     elif form.update.data:
         if form.validate_on_submit():
-            updated_medicine = models.Patient.query.filter_by(id=int(form.medicine_id.data)).first()
+            updated_medicine = models.Medicine.query.filter_by(id=int(form.medicine_id.data)).first()
 
             updated_medicine.medicine_name = form.medicine_name.data
             updated_medicine.medicine_code = form.medicine_code.data
@@ -173,7 +171,7 @@ def medicine():
 
     elif form.delete.data:
         if form.validate_on_submit():
-            delete_medicines = models.Patient.query.filter_by(id=int(form.medicine_id.data)).first()
+            delete_medicines = models.Medicine.query.filter_by(id=int(form.medicine_id.data)).first()
             print delete_medicines
 
             db.session.delete(delete_medicines)

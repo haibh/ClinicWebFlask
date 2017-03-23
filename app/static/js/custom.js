@@ -10,11 +10,12 @@
 // });
 
 // Active Nav Bar
-$(function () {
-    $('.nav li').click(function () {
-        $(this).addClass('active').siblings().removeClass('active');
-    })
-});
+// $(function () {
+//     $('.nav li').click(function () {
+//         $(this).addClass('active').siblings().removeClass('active');
+//     })
+// });
+
 
 //Clock Time
 function startTime() {
@@ -37,12 +38,10 @@ function checkTime(i) {
     return i;
 }
 
-// Pagination table - Patient
+// Pagination table:
 $(document).ready(function () {
     $('#patient_table').dataTable();
+    $('#medicine_table').dataTable();
+
 });
 
-// Pagination table - Medicine
-$(document).ready(function () {
-    $('#medicine_table').dataTable();
-});

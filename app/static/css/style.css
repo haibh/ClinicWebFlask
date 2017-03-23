@@ -3,4 +3,7 @@
     color: #eeeeee;
 }
 
+.navbar #nav > .active > a {
+    color: yellow;
+}
 

@@ -31,7 +31,7 @@
     {{ moment.include_moment() }}
 </head>
 
-<body onload="startTime()">
+<body onload="startTime()" data-spy="spyscroll" data-target=".navbar-default">
 <script type="text/javascript" src="{{ url_for('static', filename='js/jquery.js') }}"></script>
 <script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.js') }}"></script>
 <script type="text/javascript" src="{{ url_for('static', filename='js/datatables.min.js') }}"></script>
@@ -48,11 +48,12 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand"><span style="color:yellow; font-size: 20pt">Phòng mạch</span></a>
+{#                <a class="navbar-brand"><span style="color:yellow; font-size: 20pt">Phòng mạch</span></a>#}
             </div>
             <div class="collapse navbar-collapse" id="myNavbar">
-                <ul class="nav navbar-nav">
-                    <li class="active"><a href="/index">Bệnh nhân</a></li>
+                <ul class="nav navbar-nav" id="nav">
+{#                    <li class="active"><a href="/index">Bệnh nhân</a></li>#}
+                    <li class=""><a href="/index">Bệnh nhân</a></li>
                     <li class=""><a href="/medicine">Thuốc</a></li>
                     <li class=""><a href="/diagnostic">Chẩn đoán</a></li>
                     <li class=""><a href="/treatment">Điều trị</a></li>
@@ -97,6 +98,11 @@
         {% endfor %}
     {% endif %}
 {% endwith %}
+
+<script>
+	var pathname = window.location.pathname;
+	$('.nav > li > a[href="'+pathname+'"]').parent().addClass('active');
+</script>
 
 {% block content %}{% endblock %}
 </body>
