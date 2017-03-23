@@ -28,11 +28,11 @@ def index():
     elif form.add_new.data:
         if form.validate_on_submit():
             new_patient = Patient(form.patient_name.data,
-                                         form.patient_phone.data,
-                                         form.patient_age.data,
-                                         form.patient_birth_year.data,
-                                         form.patient_history.data,
-                                         form.patient_family_history.data)
+                                  form.patient_phone.data,
+                                  form.patient_age.data,
+                                  form.patient_birth_year.data,
+                                  form.patient_history.data,
+                                  form.patient_family_history.data)
             db.session.add(new_patient)
             db.session.commit()
 
@@ -51,9 +51,7 @@ def index():
             updated_patient.patient_birth_year = form.patient_birth_year.data
             updated_patient.patient_history = form.patient_history.data
             updated_patient.patient_family_history = form.patient_family_history.data
-
             db.session.commit()
-            print updated_patient
 
             patients = [updated_patient]
             flash(u'Cập nhật thành công')
@@ -63,11 +61,10 @@ def index():
     elif form.delete.data:
         if form.validate_on_submit():
             delete_patient = models.Patient.query.filter_by(id=int(form.patient_id.data)).first()
-            print delete_patient
 
             db.session.delete(delete_patient)
             db.session.commit()
-            
+
             patients = [delete_patient]
             flash(u'Xóa thành công')
         else:
@@ -127,8 +124,69 @@ def load_user(id):
 @app.route('/medicine', methods=['GET', 'POST'])
 @login_required
 def medicine():
-    # return redirect(url_for('medicine'))
-    return render_template('medicine.html')
+    form = MedicineForm()
+    medicines = Medicine.query.all()
+
+    if form.view_all.data:
+        flash(u'Xem tất cả')
+        medicines = Medicine.query.all()
+
+    elif form.add_new.data:
+        if form.validate_on_submit():
+            new_medicine = Patient(form.medicine_name.data,
+                                   form.medicine_code.data,
+                                   form.medicine_group.data,
+                                   form.medicine_active_elements.data,
+                                   form.medicine_unit.data,
+                                   form.medicine_inventory.data,
+                                   form.medicine_price.data)
+
+            db.session.add(new_medicine)
+            db.session.commit()
+
+            print new_medicine
+
+            medicines = [new_medicine]
+            flash(u'Thêm mới thành công')
+        else:
+            flash(u"Error: Vui lòng điền thông tin")
+
+    elif form.update.data:
+        if form.validate_on_submit():
+            updated_medicine = models.Patient.query.filter_by(id=int(form.medicine_id.data)).first()
+
+            updated_medicine.medicine_name = form.medicine_name.data
+            updated_medicine.medicine_code = form.medicine_code.data
+            updated_medicine.medicine_group = form.medicine_group.data
+            updated_medicine.medicine_active_elements = form.medicine_active_elements.data
+            updated_medicine.medicine_unit = form.medicine_unit.data
+            updated_medicine.medicine_inventory = form.medicine_inventory.data
+            updated_medicine.medicine_price = form.medicine_price.data
+
+            db.session.commit()
+            print updated_medicine
+
+            medicines = [updated_medicine]
+            flash(u'Cập nhật thành công')
+        else:
+            flash(u"Error: Vui lòng điền thông tin")
+
+    elif form.delete.data:
+        if form.validate_on_submit():
+            delete_medicines = models.Patient.query.filter_by(id=int(form.medicine_id.data)).first()
+            print delete_medicines
+
+            db.session.delete(delete_medicines)
+            db.session.commit()
+
+            medicines = [delete_medicines]
+            flash(u'Xóa thành công')
+        else:
+            flash(u"Error: Vui lòng điền thông tin")
+
+    return render_template('medicine.html',
+                           form=form,
+                           medicines=medicines)
 
 
 @app.route('/diagnostic', methods=['GET', 'POST'])

@@ -1,7 +1,95 @@
 {% extends "base.html" %}
+{% import "_render_field.html" as render %}
 
 {% block content %}
     {% if current_user.is_authenticated %}
-        <h1>Quản lý thuốc</h1>
+        <h3>Quản lý thuốc</h3> {{ form.refresh }}
+
+        <form action="" method="POST" name="medicne">
+            {{ form.hidden_tag() }}
+            <p>
+                {{ render.render_field(form.medicine_id, label_visible=false, placeholder='Mã số thuốc (Thêm mới thì ko cần điền)', type='text') }}
+                {{ render.render_field(form.medicine_name, label_visible=false, placeholder='Tên thuốc', type='text') }}
+                {{ render.render_field(form.medicine_code, label_visible=false, placeholder='Mã thuốc', type='text') }}
+                {{ render.render_field(form.medicine_group, label_visible=false, placeholder='Nhóm thuốc', type='text') }}
+                {{ render.render_field(form.medicine_active_elements, label_visible=false, placeholder='Hoạt tính', type='text') }}
+                {{ render.render_field(form.medicine_unit, label_visible=false, placeholder='Đơn vị', type='text') }}
+                {{ render.render_field(form.medicine_inventory, label_visible=false, placeholder='Tồn kho', type='text') }}
+                {{ render.render_field(form.medicine_price, label_visible=false, placeholder='Đơn giá', type='text') }}
+            </p>
+
+            {{ form.view_all }}
+            {{ form.add_new }}
+            {{ form.update }}
+            {{ form.delete }}
+        </form>
+
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered table-hover" id="medicine_table">
+                <thead>
+                <tr>
+                    <th class="text-left">Mã số</th>
+                    <th class="text-left">Tên thuốc</th>
+                    <th class="text-left">Mã thuốc</th>
+                    <th class="text-left">Nhóm thuốc</th>
+                    <th class="text-left">Hoạt tính</th>
+                    <th class="text-left">Đơn vị</th>
+                    <th class="text-left">Tồn kho</th>
+                    <th class="text-left">Giá tiền</th>
+                    <th class="text-left">Chức năng</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for medicine in medicines %}
+                    <tr>
+                        <td class="text-left"> {{ medicine.id }}</td>
+                        <td class="text-left"> {{ medicine.medicine_name }}</td>
+                        <td class="text-left"> {{ medicine.medicine_code }}</td>
+                        <td class="text-left"> {{ medicine.medicine_group }}</td>
+                        <td class="text-left"> {{ medicine.medicine_active_element }}</td>
+                        <td class="text-left"> {{ medicine.medicine_unit }}</td>
+                        <td class="text-left"> {{ medicine.medicine_inventory }}</td>
+                        <td class="text-left"> {{ medicine.medicine_price }} VNĐ</td>
+                        <td class="text-left">
+                            <button type="button" class="edit-medicine btn btn-default">Chỉnh sửa</button>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <script>
+            $(".edit-medicine").click(function () {
+                var $row = $(this).closest("tr");    // Find the row
+                var $tds = $row.find("td");
+                $("#medicine_id").val($tds[0].innerHTML);
+                $("#medicine_name").val($tds[1].innerHTML);
+                $("#medicine_code").val($tds[2].innerHTML);
+                $("#medicine_group").val($tds[3].innerHTML);
+                $("#medicine_active_elements").val($tds[4].innerHTML);
+                $("#medicine_unit").val($tds[5].innerHTML);
+                $("#medicine_inventory").val($tds[6].innerHTML);
+                $("#medicine_price").val($tds[7].innerHTML);
+
+                $.each($tds, function () {
+                    console.log($(this).text());
+                });
+            });
+        </script>
+
+        <script>
+            $("#refresh").click(function () {
+                $("#medicine_id").val('');
+                $("#medicine_name").val('');
+                $("#medicine_code").val('');
+                $("#medicine_group").val('');
+                $("#medicine_active_elements").val('');
+                $("#medicine_unit").val('');
+                $("#medicine_inventory").val('');
+                $("#medicine_price").val('');
+            });
+        </script>
+
     {% endif %}
 {% endblock %}

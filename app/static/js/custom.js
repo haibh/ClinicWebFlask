@@ -37,8 +37,12 @@ function checkTime(i) {
     return i;
 }
 
-// Pagination table
+// Pagination table - Patient
 $(document).ready(function () {
     $('#patient_table').dataTable();
 });
 
+// Pagination table - Medicine
+$(document).ready(function () {
+    $('#medicine_table').dataTable();
+});

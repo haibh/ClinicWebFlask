@@ -58,5 +58,34 @@
         </div>
     {% endif %}
 
+    <script>
+        $(".edit-patient").click(function () {
+            var $row = $(this).closest("tr");    // Find the row
+            var $tds = $row.find("td");
+            $("#patient_id").val($tds[0].innerHTML);
+            $("#patient_name").val($tds[1].innerHTML);
+            $("#patient_phone").val($tds[2].innerHTML);
+            $("#patient_age").val($tds[3].innerHTML);
+            $("#patient_birth_year").val($tds[4].innerHTML);
+            $("#patient_history").val($tds[5].innerHTML);
+            $("#patient_family_history").val($tds[6].innerHTML);
+
+            $.each($tds, function () {
+                console.log($(this).text());
+            });
+        });
+    </script>
+
+    <script>
+        $("#refresh").click(function () {
+            $("#patient_id").val('');
+            $("#patient_name").val('');
+            $("#patient_phone").val('');
+            $("#patient_age").val('');
+            $("#patient_birth_year").val('');
+            $("#patient_history").val('');
+            $("#patient_family_history").val('');
+        });
+    </script>
 
 {% endblock %}

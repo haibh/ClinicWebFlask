@@ -54,8 +54,6 @@ class User(db.Model, UserMixin):
 
 
 class Patient(db.Model):
-    # __bind_key__ = 'patient'
-
     id = db.Column(db.Integer, primary_key=True)
     patient_name = db.Column(db.String(32), index=True)
     patient_phone = db.Column(db.String(32), index=True)
@@ -82,10 +80,9 @@ class Patient(db.Model):
 
 
 class Medicine(db.Model):
-    # __bind_key__ = 'medicine'
-
     id = db.Column(db.Integer, primary_key=True)
-    medicine_name = db.Column(db.String(32), index=True, unique=True)
+    # medicine_name = db.Column(db.String(32), index=True, unique=True)
+    medicine_name = db.Column(db.String(32), index=True)
     medicine_code = db.Column(db.String(32), index=True)
     medicine_group = db.Column(db.String(32), index=True)
     medicine_active_element = db.Column(db.Text, index=True)
@@ -109,8 +106,6 @@ class Medicine(db.Model):
 
 
 class Diagnostic(db.Model):
-    # __bind_key__ = 'diagnostic'
-
     id = db.Column(db.Integer, primary_key=True)
     diagnostic_name = db.Column(db.String(32), index=True, unique=True)
     diagnostic_type = db.Column(db.String(32), index=True)
@@ -131,8 +126,6 @@ class Diagnostic(db.Model):
 
 
 class Treatment(db.Model):
-    # __bind_key__ = 'treatment'
-
     id = db.Column(db.Integer, primary_key=True)
     treatment_name = db.Column(db.String(32), index=True, unique=True)
     treatment_timestamp = db.Column(db.DATETIME, index=True)
