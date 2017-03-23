@@ -7,16 +7,17 @@
 
         <form action="" method="POST" name="medicne">
             {{ form.hidden_tag() }}
-            <p>
-                {{ render.render_field(form.medicine_id, label_visible=false, placeholder='Mã số thuốc (Thêm mới thì ko cần điền)', type='text') }}
-                {{ render.render_field(form.medicine_name, label_visible=false, placeholder='Tên thuốc', type='text') }}
-                {{ render.render_field(form.medicine_code, label_visible=false, placeholder='Mã thuốc', type='text') }}
-                {{ render.render_field(form.medicine_group, label_visible=false, placeholder='Nhóm thuốc', type='text') }}
-                {{ render.render_field(form.medicine_active_elements, label_visible=false, placeholder='Hoạt tính', type='text') }}
-                {{ render.render_field(form.medicine_unit, label_visible=false, placeholder='Đơn vị', type='text') }}
-                {{ render.render_field(form.medicine_inventory, label_visible=false, placeholder='Tồn kho', type='text') }}
-                {{ render.render_field(form.medicine_price, label_visible=false, placeholder='Đơn giá', type='text') }}
-            </p>
+
+
+            {{ render.render_field(form.medicine_id, label_visible=false, placeholder='Mã số thuốc (Thêm mới thì ko cần điền)', type='text') }}
+            {{ render.render_field(form.medicine_name, label_visible=false, placeholder='Tên thuốc', type='text') }}
+            {{ render.render_field(form.medicine_code, label_visible=false, placeholder='Mã thuốc', type='text') }}
+            {{ render.render_field(form.medicine_group, label_visible=false, placeholder='Nhóm thuốc', type='text') }}
+            {{ render.render_field(form.medicine_active_elements, label_visible=false, placeholder='Hoạt tính', type='text') }}
+            {{ render.render_field(form.medicine_unit, label_visible=false, placeholder='Đơn vị', type='text') }}
+            {{ render.render_field(form.medicine_inventory, label_visible=false, placeholder='Tồn kho', type='text') }}
+            {{ render.render_field(form.medicine_price, label_visible=false, placeholder='Đơn giá', type='text') }}
+
 
             {{ form.view_all }}
             {{ form.add_new }}
