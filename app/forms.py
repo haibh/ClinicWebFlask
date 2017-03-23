@@ -17,8 +17,9 @@ class PatientForm(FlaskForm):
     patient_phone = StringField('patient_phone', validators=[DataRequired()])
     patient_age = StringField('patient_age', validators=[DataRequired()])
     patient_birth_year = StringField('patient_birth_year', validators=[DataRequired()])
-    patient_history = StringField('patient_history', validators=[DataRequired()])
-    patient_family_history = StringField('patient_family_history', validators=[DataRequired()])
+
+    patient_history = TextAreaField('patient_history', validators=[DataRequired()])
+    patient_family_history = TextAreaField('patient_family_history', validators=[DataRequired()])
 
     #Button
     refresh = SubmitField(u'Làm mới')
