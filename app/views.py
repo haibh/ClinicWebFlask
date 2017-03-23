@@ -29,7 +29,8 @@ def index():
             new_patient = Patient(form.patient_name.data,
                                   form.patient_phone.data,
                                   form.patient_age.data,
-                                  form.patient_birth_year.data,
+                                  form.patient_gender.data,
+                                  form.patient_address.data,
                                   form.patient_history.data,
                                   form.patient_family_history.data)
             db.session.add(new_patient)
@@ -47,7 +48,8 @@ def index():
             updated_patient.patient_name = form.patient_name.data
             updated_patient.patient_phone = form.patient_phone.data
             updated_patient.patient_age = form.patient_age.data
-            updated_patient.patient_birth_year = form.patient_birth_year.data
+            updated_patient.patient_gender = form.patient_gender.data
+            updated_patient.patient_address = form.patient_address.data
             updated_patient.patient_history = form.patient_history.data
             updated_patient.patient_family_history = form.patient_family_history.data
             db.session.commit()
@@ -162,7 +164,8 @@ def medicine():
             updated_medicine.medicine_price = form.medicine_price.data
 
             db.session.commit()
-            print updated_medicine
+            print form.medicine_active_elements.data
+            print updated_medicine.medicine_active_elements
 
             medicines = [updated_medicine]
             flash(u'Cập nhật thành công')

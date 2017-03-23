@@ -16,7 +16,9 @@ class PatientForm(FlaskForm):
     patient_name = StringField('patient_name', validators=[DataRequired()])
     patient_phone = StringField('patient_phone', validators=[DataRequired()])
     patient_age = StringField('patient_age', validators=[DataRequired()])
-    patient_birth_year = StringField('patient_birth_year', validators=[DataRequired()])
+    patient_gender = StringField('patient_gender', validators=[DataRequired()])
+
+    patient_address = StringField('patient_address', validators=[DataRequired()])
 
     patient_history = TextAreaField('patient_history', validators=[DataRequired()])
     patient_family_history = TextAreaField('patient_family_history', validators=[DataRequired()])

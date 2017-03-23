@@ -1,27 +1,26 @@
-admin:  postgres
-pass:   postgres123456
-port:   5432
+==================================
+Bệnh nhân:
 
+Mã bệnh nhân:       - id
+Họ Tên              - patient_name
+Điện thoại          - patient_phone
+Tuổi                - patientAge
+Giới tính           - patient_gender
+Tiền căn            - patient_history
+Tiền căn gia đình   - patient_family_history
+Mô tả bệnh          - patient_description
+Chẩn đoán           - patient_diagnostic
 =====================================
 medicine:
-Mã          - medicineCode
-nhóm        - medicuneGroup
-Tên Thuốc   - medicineName
-hoạt Chất   - medicineActiveElement
-đơn vị      - medicineUnit
-Tổn         - medicineInventory
-==================================
-Thông tin khám bệnh:
+Mã số       - id
+Tên thuốc   - medicine_name
+Mã thuốc    - medicine_code
+nhóm        - medicune_group
+hoạt Chất   - medicine_active_elements
+đơn vị      - medicine_unit
+Tổn         - medicine_inventory
+Giá         - medicine_price
 
-CMND                - patientID
-Họ Tên              - patientName
-Điện thoại          - patientPhone
-Tuổi                - patientAge
-Năm sinh            - patientBirthYear
-Tiền căn            - patientHistory
-Tiền căn gia đình   - patientFamilyHistory
-Mô tả bệnh          - patientDescription
-Chẩn đoán           - patientDiagnostic
 
 An:
 - Gửi file Excel các thông tin cần lưu của thuốc (nhóm thuốc, đơn vị, giá tiền, hàm lượng, cách dùng, ...)

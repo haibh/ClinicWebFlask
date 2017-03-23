@@ -3,22 +3,28 @@
 
 {% block content %}
     {% if current_user.is_authenticated %}
-        <h3>Quản lý thuốc</h3> {{ form.refresh }}
+        <h3>Quản lý thuốc</h3>
 
-        <form action="" method="POST" name="medicne">
+        <form action="" method="POST" name="medicne" class="form-horizontal">
             {{ form.hidden_tag() }}
+            <div class="form-group">
+                <div class="col-sm-6">{{ form.refresh }}</div>
+                <div class="col-sm-6">{{ render.render_field(form.medicine_id, label_visible=false, placeholder='Mã số thuốc (Thêm mới thì ko cần điền)', type='text') }}</div>
+            </div>
 
+            <div class="form-group">
+                <div class="col-sm-6">{{ render.render_field(form.medicine_name, label_visible=false, placeholder='Tên thuốc', type='text') }}</div>
+                <div class="col-sm-2">{{ render.render_field(form.medicine_price, label_visible=false, placeholder='Đơn giá', type='text') }}</div>
+                <div class="col-sm-2">{{ render.render_field(form.medicine_inventory, label_visible=false, placeholder='Tồn kho', type='text') }}</div>
+                <div class="col-sm-2">{{ render.render_field(form.medicine_unit, label_visible=false, placeholder='Đơn vị', type='text') }}</div>
+            </div>
 
-            {{ render.render_field(form.medicine_id, label_visible=false, placeholder='Mã số thuốc (Thêm mới thì ko cần điền)', type='text') }}
-            {{ render.render_field(form.medicine_name, label_visible=false, placeholder='Tên thuốc', type='text') }}
-            {{ render.render_field(form.medicine_code, label_visible=false, placeholder='Mã thuốc', type='text') }}
-            {{ render.render_field(form.medicine_group, label_visible=false, placeholder='Nhóm thuốc', type='text') }}
-            {{ render.render_field(form.medicine_active_elements, label_visible=false, placeholder='Hoạt tính', type='text') }}
-            {{ render.render_field(form.medicine_unit, label_visible=false, placeholder='Đơn vị', type='text') }}
-            {{ render.render_field(form.medicine_inventory, label_visible=false, placeholder='Tồn kho', type='text') }}
-            {{ render.render_field(form.medicine_price, label_visible=false, placeholder='Đơn giá', type='text') }}
-
-
+            <div class="form-group">
+                <div class="col-sm-2">{{ render.render_field(form.medicine_code, label_visible=false, placeholder='Mã thuốc', type='text') }}</div>
+                <div class="col-sm-2">{{ render.render_field(form.medicine_group, label_visible=false, placeholder='Nhóm thuốc', type='text') }}</div>
+                <div class="col-sm-8">{{ render.render_field(form.medicine_active_elements, label_visible=false, placeholder='Hoạt tính', type='text') }}</div>
+            </div>
+            <br>
             {{ form.view_all }}
             {{ form.add_new }}
             {{ form.update }}
@@ -36,7 +42,7 @@
                     <th class="text-left">Hoạt tính</th>
                     <th class="text-left">Đơn vị</th>
                     <th class="text-left">Tồn kho</th>
-                    <th class="text-left">Giá tiền</th>
+                    <th class="text-left">$</th>
                     <th class="text-left">Chức năng</th>
                 </tr>
                 </thead>
@@ -47,10 +53,10 @@
                         <td class="text-left"> {{ medicine.medicine_name }}</td>
                         <td class="text-left"> {{ medicine.medicine_code }}</td>
                         <td class="text-left"> {{ medicine.medicine_group }}</td>
-                        <td class="text-left"> {{ medicine.medicine_active_element }}</td>
+                        <td class="text-left"> {{ medicine.medicine_active_elements }}</td>
                         <td class="text-left"> {{ medicine.medicine_unit }}</td>
                         <td class="text-left"> {{ medicine.medicine_inventory }}</td>
-                        <td class="text-left"> {{ medicine.medicine_price }} VNĐ</td>
+                        <td class="text-left"> {{ medicine.medicine_price }}</td>
                         <td class="text-left">
                             <button type="button" class="edit-medicine btn btn-default">Chỉnh sửa</button>
                         </td>

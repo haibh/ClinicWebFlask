@@ -54,11 +54,13 @@ class User(db.Model, UserMixin):
 
 
 class Patient(db.Model):
+    patient_dic = []
     id = db.Column(db.Integer, primary_key=True)
     patient_name = db.Column(db.String(32), index=True)
     patient_phone = db.Column(db.String(32), index=True)
     patient_age = db.Column(db.INTEGER, index=True)
-    patient_birth_year = db.Column(db.INTEGER, index=True)
+    patient_gender = db.Column(db.INTEGER, index=True)
+    patient_address = db.Column(db.INTEGER, index=True)
     patient_history = db.Column(db.Text, index=True)
     patient_family_history = db.Column(db.Text, index=True)
 
@@ -67,11 +69,12 @@ class Patient(db.Model):
     patient_treatment = db.relationship('Treatment',
                                         backref='patient_treatment', lazy='dynamic')
 
-    def __init__(self, name, phone, age, birthyear, history, familiy_history):
+    def __init__(self, name, phone, age, gender, address, history, familiy_history):
         self.patient_name = name
         self.patient_phone = phone
         self.patient_age = age
-        self.patient_birth_year = birthyear
+        self.patient_gender = gender
+        self.patient_address = address
         self.patient_history = history
         self.patient_family_history = familiy_history
 
@@ -85,18 +88,18 @@ class Medicine(db.Model):
     medicine_name = db.Column(db.String(32), index=True)
     medicine_code = db.Column(db.String(32), index=True)
     medicine_group = db.Column(db.String(32), index=True)
-    medicine_active_element = db.Column(db.Text, index=True)
+    medicine_active_elements = db.Column(db.Text, index=True)
     medicine_unit = db.Column(db.String(32), index=True)
     medicine_inventory = db.Column(db.INTEGER, index=True)
     medicine_price = db.Column(db.INTEGER, index=True)
 
     # treatment_id = db.Column(db.INTEGER, db.ForeignKey(Treatment.id))
 
-    def __init__(self, name, code, group, active_element, unit, inventory, price):
+    def __init__(self, name, code, group, active_elements, unit, inventory, price):
         self.medicine_name = name
         self.medicine_code = code
         self.medicine_group = group
-        self.medicine_active_element = active_element
+        self.medicine_active_elements = active_elements
         self.medicine_unit = unit
         self.medicine_inventory = inventory
         self.medicine_price = price

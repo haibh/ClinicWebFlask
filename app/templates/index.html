@@ -5,20 +5,23 @@
 {% block content %}
     {% if current_user.is_authenticated %}
         <h3>Quản lý bệnh nhân </h3>
-        {{ form.refresh }}
-
 
         <form action="" method="POST" name="patient" class="form-horizontal">
             {{ form.hidden_tag() }}
 
-            {{ render.render_field(form.patient_id, label_visible=true, placeholder='Mã số (Thêm mới thì ko cần điền)', type='text') }}
+            <div class="form-group">
+                <div class="col-sm-6"> {{ form.refresh }}</div>
+                <div class="col-sm-6"> {{ render.render_field(form.patient_id, label_visible=false, placeholder='Mã số (Thêm mới thì ko cần điền)', type='text') }}</div>
+            </div>
 
             <div class="form-group">
                 <div class="col-sm-6"> {{ render.render_field(form.patient_name, label_visible=false, placeholder='Họ Tên', type='text') }} </div>
                 <div class="col-sm-2"> {{ render.render_field(form.patient_phone, label_visible=false, placeholder='Điện thoại', type='text') }} </div>
                 <div class="col-sm-2"> {{ render.render_field(form.patient_age, label_visible=false, placeholder='Tuổi', type='text') }} </div>
-                <div class="col-sm-2"> {{ render.render_field(form.patient_birth_year, label_visible=false, placeholder='Năm sinh', type='text') }} </div>
+                <div class="col-sm-2"> {{ render.render_field(form.patient_gender, label_visible=false, placeholder='Giới tính', type='text') }} </div>
             </div>
+
+            {{ render.render_field(form.patient_address, label_visible=false, placeholder='Địa chỉ', type='text') }}
 
             <div class="form-group">
                 <div class="col-sm-6"> {{ render.render_field(form.patient_history, label_visible=false, placeholder='Tiền căn cá nhân', type='text', row='10') }} </div>
@@ -40,9 +43,10 @@
                     <th class="text-left">Tên</th>
                     <th class="text-left">Điện thoại</th>
                     <th class="text-left">Tuổi</th>
-                    <th class="text-left">Năm sinh</th>
-                    <th class="text-left">Lịch sử</th>
-                    <th class="text-left">Lịch sử gia đình</th>
+                    <th class="text-left">Giới tính</th>
+                    <th class="text-left">Địa chỉ</th>
+                    <th class="text-left">Tiền căn</th>
+                    <th class="text-left">Tiền căn gia đình</th>
                     <th class="text-left">Chức năng</th>
                 </tr>
                 </thead>
@@ -53,7 +57,8 @@
                         <td class="text-left"> {{ patient.patient_name }}</td>
                         <td class="text-left"> {{ patient.patient_phone }}</td>
                         <td class="text-left"> {{ patient.patient_age }}</td>
-                        <td class="text-left"> {{ patient.patient_birth_year }}</td>
+                        <td class="text-left"> {{ patient.patient_gender }}</td>
+                        <td class="text-left"> {{ patient.patient_address }}</td>
                         <td class="text-left"> {{ patient.patient_history }}</td>
                         <td class="text-left"> {{ patient.patient_family_history }}</td>
                         <td class="text-left">
@@ -75,9 +80,10 @@
             $("#patient_name").val($tds[1].innerHTML);
             $("#patient_phone").val($tds[2].innerHTML);
             $("#patient_age").val($tds[3].innerHTML);
-            $("#patient_birth_year").val($tds[4].innerHTML);
-            $("#patient_history").val($tds[5].innerHTML);
-            $("#patient_family_history").val($tds[6].innerHTML);
+            $("#patient_gender").val($tds[4].innerHTML);
+            $("#patient_address").val($tds[5].innerHTML);
+            $("#patient_history").val($tds[6].innerHTML);
+            $("#patient_family_history").val($tds[7].innerHTML);
 
             $.each($tds, function () {
                 console.log($(this).text());
@@ -91,7 +97,8 @@
             $("#patient_name").val('');
             $("#patient_phone").val('');
             $("#patient_age").val('');
-            $("#patient_birth_year").val('');
+            $("#patient_gender").val('');
+            $("#patient_address").val('');
             $("#patient_history").val('');
             $("#patient_family_history").val('');
         });
