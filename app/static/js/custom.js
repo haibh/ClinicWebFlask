@@ -1,5 +1,4 @@
 
-
 //Clock Time
 function startTime() {
     var today = new Date();
