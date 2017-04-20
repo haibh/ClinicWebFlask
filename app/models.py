@@ -122,7 +122,7 @@ class Diagnostic(db.Model):
 
     patient_id = db.Column(db.INTEGER, db.ForeignKey(Patient.id))
 
-    def __init__(self, datetime, bloodpressure, heartbeat, temperature, weight, bloodtype, diagnostic_list):
+    def __init__(self, bloodpressure, heartbeat, temperature, weight, bloodtype, diagnostic_list, datetime=None):
         self.diagnostic_bloodpressure = bloodpressure
         self.diagnostic_heartbeat = heartbeat
         self.diagnostic_temperature = temperature
