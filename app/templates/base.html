@@ -36,6 +36,9 @@
 <script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.js') }}"></script>
 <script type="text/javascript" src="{{ url_for('static', filename='js/datatables.min.js') }}"></script>
 <script type="text/javascript" src="{{ url_for('static', filename='js/custom.js') }}"></script>
+<script type=text/javascript>
+    var $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+</script>
 
 
 {% if current_user.is_authenticated %}
@@ -48,11 +51,11 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-{#                <a class="navbar-brand"><span style="color:yellow; font-size: 20pt">Phòng mạch</span></a>#}
+                {#                <a class="navbar-brand"><span style="color:yellow; font-size: 20pt">Phòng mạch</span></a>#}
             </div>
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav" id="nav">
-{#                    <li class="active"><a href="/index">Bệnh nhân</a></li>#}
+                    {#                    <li class="active"><a href="/index">Bệnh nhân</a></li>#}
                     <li class=""><a href="/index">Bệnh nhân</a></li>
                     <li class=""><a href="/medicine">Thuốc</a></li>
                     <li class=""><a href="/diagnostic">Chẩn đoán</a></li>
@@ -100,8 +103,8 @@
 {% endwith %}
 
 <script>
-	var pathname = window.location.pathname;
-	$('.nav > li > a[href="'+pathname+'"]').parent().addClass('active');
+    var pathname = window.location.pathname;
+    $('.nav > li > a[href="' + pathname + '"]').parent().addClass('active');
 </script>
 
 {% block content %}{% endblock %}

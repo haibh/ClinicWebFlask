@@ -41,12 +41,12 @@ class MedicineForm(FlaskForm):
     medicine_inventory = StringField('medicine_inventory', validators=[DataRequired()])
     medicine_price = StringField('medicine_price', validators=[DataRequired()])
 
-    #Button
     refresh = SubmitField(u'Làm mới')
     view_all = SubmitField(u'Xem tất cả')
     add_new = SubmitField(u'Thêm mới')
     update = SubmitField(u'Cập nhật')
     delete = SubmitField(u'Xóa thuốc')
+    choose_patient = SubmitField(u'Chooon')
 
 
 class TreatmentForm(FlaskForm):

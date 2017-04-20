@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf8 -*-
 
-from flask import Flask, g, flash, redirect, render_template, request, session, abort, url_for
+from flask import Flask, g, flash, redirect, render_template, request, session, abort, url_for, jsonify, json
 from flask_login import login_user, logout_user, current_user, login_required
 from app import app, db, models, login_manager
 from models import Patient, Medicine, Treatment, Diagnostic
@@ -9,6 +9,7 @@ from .forms import LoginForm, PatientForm, DiagnosticForm, MedicineForm, Treatme
 
 login_manager.login_message = u"Vui lòng đăng nhập"
 login_manager.session_protection = "strong"
+patient_id_session = 0
 
 
 @app.route('/')
@@ -26,6 +27,8 @@ def index():
 
     elif form.add_new.data:
         if form.validate_on_submit():
+            print form.patient_name.data
+
             new_patient = Patient(form.patient_name.data,
                                   form.patient_phone.data,
                                   form.patient_age.data,
@@ -36,8 +39,8 @@ def index():
             db.session.add(new_patient)
             db.session.commit()
 
-            patients = [new_patient]
-            flash(u'Thêm mới thành công')
+            # patients = [new_patient]
+            flash(u'Thêm mới thành công:' + form.patient_name.data)
         else:
             flash(u"Error: Vui lòng điền thông tin")
 
@@ -46,6 +49,7 @@ def index():
             updated_patient = models.Patient.query.filter_by(id=int(form.patient_id.data)).first()
 
             updated_patient.patient_name = form.patient_name.data
+            print form.patient_name.data
             updated_patient.patient_phone = form.patient_phone.data
             updated_patient.patient_age = form.patient_age.data
             updated_patient.patient_gender = form.patient_gender.data
@@ -54,8 +58,8 @@ def index():
             updated_patient.patient_family_history = form.patient_family_history.data
             db.session.commit()
 
-            patients = [updated_patient]
-            flash(u'Cập nhật thành công')
+            # patients = [updated_patient]
+            flash(u'Cập nhật thành công: ' + form.patient_name.data)
         else:
             flash(u"Error: Vui lòng điền thông tin")
 
@@ -67,13 +71,14 @@ def index():
             db.session.commit()
 
             patients = [delete_patient]
-            flash(u'Xóa thành công')
+            flash(u'Xóa thành công:' + form.patient_name.data)
         else:
             flash(u"Error: Vui lòng điền thông tin")
 
     return render_template('index.html',
                            form=form,
-                           patients=patients)
+                           patients=patients,
+                           session=session)
 
 
 @app.route('/login', methods=['POST', 'GET'])
@@ -134,12 +139,12 @@ def medicine():
     elif form.add_new.data:
         if form.validate_on_submit():
             new_medicine = Medicine(form.medicine_name.data,
-                                   form.medicine_code.data,
-                                   form.medicine_group.data,
-                                   form.medicine_active_elements.data,
-                                   form.medicine_unit.data,
-                                   form.medicine_inventory.data,
-                                   form.medicine_price.data)
+                                    form.medicine_code.data,
+                                    form.medicine_group.data,
+                                    form.medicine_active_elements.data,
+                                    form.medicine_unit.data,
+                                    form.medicine_inventory.data,
+                                    form.medicine_price.data)
 
             db.session.add(new_medicine)
             db.session.commit()
@@ -200,3 +205,15 @@ def diagnostic():
 @login_required
 def treatment():
     return render_template('treatment.html')
+
+
+# Get Patient ID by ajax
+@app.route('/getId', methods=['POST'])
+@login_required
+def getId():
+    id = request.form['patient_id'];
+    user = request.form['patient_name'];
+    patient_id_session = id
+    print patient_id_session
+    # flash(u'Đã chọn user: ' + user + u' với ID: ' + id)
+    return json.dumps({'status': 'OK', 'user': user, 'id': id});
