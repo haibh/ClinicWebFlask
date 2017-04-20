@@ -36,9 +36,7 @@
 <script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.js') }}"></script>
 <script type="text/javascript" src="{{ url_for('static', filename='js/datatables.min.js') }}"></script>
 <script type="text/javascript" src="{{ url_for('static', filename='js/custom.js') }}"></script>
-<script type=text/javascript>
-    var $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
-</script>
+
 
 
 {% if current_user.is_authenticated %}

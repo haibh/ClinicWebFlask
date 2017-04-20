@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf8 -*-
 from flask_wtf import FlaskForm
-from wtforms import Form, TextField, TextAreaField, validators, StringField, SubmitField, PasswordField, BooleanField
+from wtforms import Form, TextField, TextAreaField, validators, StringField, SubmitField, PasswordField, BooleanField, DateTimeField, IntegerField
 from wtforms.validators import DataRequired
 
 
@@ -23,7 +23,6 @@ class PatientForm(FlaskForm):
     patient_history = TextAreaField('patient_history', validators=[DataRequired()])
     patient_family_history = TextAreaField('patient_family_history', validators=[DataRequired()])
 
-    #Button
     refresh = SubmitField(u'Làm mới')
     view_all = SubmitField(u'Xem tất cả')
     add_new = SubmitField(u'Thêm mới')
@@ -46,11 +45,25 @@ class MedicineForm(FlaskForm):
     add_new = SubmitField(u'Thêm mới')
     update = SubmitField(u'Cập nhật')
     delete = SubmitField(u'Xóa thuốc')
-    choose_patient = SubmitField(u'Chooon')
 
 
 class TreatmentForm(FlaskForm):
-    pass
+    diagnostic_id = StringField('diagnostic_id', validators=[DataRequired()])
+    diagnostic_datetime = DateTimeField('diagnostic_datetime', validators=[DataRequired()])
+    diagnostic_bloodpressure = StringField('diagnostic_bloodpressure', validators=[DataRequired()])
+    diagnostic_heartbeat = StringField('diagnostic_heartbeat', validators=[DataRequired()])
+    diagnostic_temperature = StringField('diagnostic_temperature', validators=[DataRequired()])
+    diagnostic_weight = StringField('diagnostic_weight', validators=[DataRequired()])
+    diagnostic_bloodtype = StringField('diagnostic_bloodtype', validators=[DataRequired()])
+    diagnostic_list = StringField('diagnostic_list', validators=[DataRequired()])
+
+    refresh = SubmitField(u'Làm mới')
+    view_all = SubmitField(u'Xem tất cả')
+    add_new = SubmitField(u'Thêm mới')
+    update = SubmitField(u'Cập nhật')
+    delete = SubmitField(u'Xóa')
+
+
 
 
 class DiagnosticForm(FlaskForm):

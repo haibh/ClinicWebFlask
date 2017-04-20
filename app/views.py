@@ -27,8 +27,6 @@ def index():
 
     elif form.add_new.data:
         if form.validate_on_submit():
-            print form.patient_name.data
-
             new_patient = Patient(form.patient_name.data,
                                   form.patient_phone.data,
                                   form.patient_age.data,
@@ -49,7 +47,6 @@ def index():
             updated_patient = models.Patient.query.filter_by(id=int(form.patient_id.data)).first()
 
             updated_patient.patient_name = form.patient_name.data
-            print form.patient_name.data
             updated_patient.patient_phone = form.patient_phone.data
             updated_patient.patient_age = form.patient_age.data
             updated_patient.patient_gender = form.patient_gender.data
@@ -77,8 +74,7 @@ def index():
 
     return render_template('index.html',
                            form=form,
-                           patients=patients,
-                           session=session)
+                           patients=patients)
 
 
 @app.route('/login', methods=['POST', 'GET'])
@@ -198,7 +194,14 @@ def medicine():
 @app.route('/diagnostic', methods=['GET', 'POST'])
 @login_required
 def diagnostic():
-    return render_template('diagnostic.html')
+    form = DiagnosticForm()
+    current_patient = models.Patient.query.filter_by(id=patient_id_session).first()
+    print patient_id_session
+    print current_patient
+
+    return render_template('diagnostic.html',
+                           form=form,
+                           patient=current_patient)
 
 
 @app.route('/treatment', methods=['GET', 'POST'])
@@ -213,7 +216,6 @@ def treatment():
 def getId():
     id = request.form['patient_id'];
     user = request.form['patient_name'];
+    global patient_id_session
     patient_id_session = id
-    print patient_id_session
-    # flash(u'Đã chọn user: ' + user + u' với ID: ' + id)
     return json.dumps({'status': 'OK', 'user': user, 'id': id});

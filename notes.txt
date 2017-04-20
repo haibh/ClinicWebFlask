@@ -20,6 +20,17 @@ hoạt Chất   - medicine_active_elements
 đơn vị      - medicine_unit
 Tổn         - medicine_inventory
 Giá         - medicine_price
+=========================================
+diagnostic
+mã số       - id
+Thời gian   - diagnostic_datetime
+Huyết áp    - diagnostic_bloodpressure
+Mạch        - diagnostic_heartbeat
+Nhiệt độ    - diagnostic_temperature
+Cân nặng    - diagnostic_weight
+Nhóm máu    - diagnostic_bloodtype
+Xét nghiệm  - diagnostic_list
+
 
 
 An:

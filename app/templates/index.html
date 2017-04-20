@@ -55,7 +55,7 @@
                     {% for patient in patients %}
                         <tr>
                             <td class="text-left" name="patient_id"> {{ patient.id }}</td>
-                            <td class="text-left" name="patient_name">> {{ patient.patient_name }}</td>
+                            <td class="text-left" name="patient_name"> {{ patient.patient_name }}</td>
                             <td class="text-left"> {{ patient.patient_phone }}</td>
                             <td class="text-left"> {{ patient.patient_age }}</td>
                             <td class="text-left"> {{ patient.patient_gender }}</td>
@@ -104,10 +104,10 @@
                 console.log(error);
             }
         });
-{##}
-{#        $.each($tds, function () {#}
-{#            console.log($(this).text());#}
-{#        });#}
+
+        $.each($tds, function () {
+            console.log($(this).text());
+        });
     });
     </script>
 

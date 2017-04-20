@@ -111,17 +111,26 @@ class Medicine(db.Model):
 class Diagnostic(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     diagnostic_name = db.Column(db.String(32), index=True, unique=True)
-    diagnostic_type = db.Column(db.String(32), index=True)
-    diagnostic_details = db.Column(db.Text, index=True)
-    diagnostic_timestamp = db.Column(db.DATETIME, index=True)
+    # diagnostic_datetime = db.Column(db.DATETIME, index=True)
+    diagnostic_datetime = db.Column(db.String(32), index=True)
+    diagnostic_bloodpressure = db.Column(db.String(32), index=True)
+    diagnostic_heartbeat = db.Column(db.String(32), index=True)
+    diagnostic_temperature = db.Column(db.String(32), index=True)
+    diagnostic_weight = db.Column(db.String(32), index=True)
+    diagnostic_bloodtype = db.Column(db.String(32), index=True)
+    diagnostic_list = db.Column(db.String(32), index=True)
 
     patient_id = db.Column(db.INTEGER, db.ForeignKey(Patient.id))
 
-    def __init__(self, name, type, details, timestamp=None):
-        self.diagnostic_name = name
-        self.diagnostic_type = type
-        self.diagnostic_details = details
-        if timestamp is None:
+    def __init__(self, datetime, bloodpressure, heartbeat, temperature, weight, bloodtype, diagnostic_list):
+        self.diagnostic_bloodpressure = bloodpressure
+        self.diagnostic_heartbeat = heartbeat
+        self.diagnostic_temperature = temperature
+        self.diagnostic_weight = weight
+        self.diagnostic_bloodtype = bloodtype
+        self.diagnostic_list = diagnostic_list
+
+        if datetime is None:
             self.diagnostic_timestamp = datetime.utcnow()
 
     def __repr__(self):
