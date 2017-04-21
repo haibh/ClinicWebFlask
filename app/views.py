@@ -195,13 +195,21 @@ def medicine():
 @login_required
 def diagnostic():
     form = DiagnosticForm()
-    current_patient = models.Patient.query.filter_by(id=patient_id_session).first()
-    print patient_id_session
-    print current_patient
 
+    current_patient = models.Patient.query.filter_by(id=patient_id_session).first()
+    # diagnostics = current_patient.patient_diagnostic.all()
+
+    print patient_id_session, current_patient
+    # print diagnostics
+    #
+    # return render_template('diagnostic.html',
+    #                        form=form,
+    #                        patient=current_patient,
+    #                        diagnostics=diagnostics)
     return render_template('diagnostic.html',
                            form=form,
-                           patient=current_patient)
+                           patient=current_patient,
+                           )
 
 
 @app.route('/treatment', methods=['GET', 'POST'])

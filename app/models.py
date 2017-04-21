@@ -64,10 +64,8 @@ class Patient(db.Model):
     patient_history = db.Column(db.Text, index=True)
     patient_family_history = db.Column(db.Text, index=True)
 
-    patient_diagnostic = db.relationship('Diagnostic',
-                                         backref='patient_diagnostic', lazy='dynamic')
-    patient_treatment = db.relationship('Treatment',
-                                        backref='patient_treatment', lazy='dynamic')
+    diagnostic = db.relationship('Diagnostic', backref='patient', lazy='dynamic')
+    treatment = db.relationship('Treatment', backref='patient', lazy='dynamic')
 
     def __init__(self, name, phone, age, gender, address, history, familiy_history):
         self.patient_name = name
@@ -111,24 +109,26 @@ class Medicine(db.Model):
 class Diagnostic(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     diagnostic_name = db.Column(db.String(32), index=True, unique=True)
-    # diagnostic_datetime = db.Column(db.DATETIME, index=True)
-    diagnostic_datetime = db.Column(db.String(32), index=True)
     diagnostic_bloodpressure = db.Column(db.String(32), index=True)
     diagnostic_heartbeat = db.Column(db.String(32), index=True)
     diagnostic_temperature = db.Column(db.String(32), index=True)
     diagnostic_weight = db.Column(db.String(32), index=True)
     diagnostic_bloodtype = db.Column(db.String(32), index=True)
     diagnostic_list = db.Column(db.String(32), index=True)
+    # patient_id = db.Column(db.INTEGER, db.ForeignKey(Patient.id))
+    patient_id = db.Column(db.INTEGER, db.ForeignKey('patient.id'))
+    # diagnostic_datetime = db.Column(db.String(32), index=True)
+    diagnostic_datetime = db.Column(db.DATETIME)
 
-    patient_id = db.Column(db.INTEGER, db.ForeignKey(Patient.id))
-
-    def __init__(self, bloodpressure, heartbeat, temperature, weight, bloodtype, diagnostic_list, datetime=None):
+    def __init__(self, bloodpressure, heartbeat, temperature, weight, bloodtype, diagnostic_list, patient,
+                 datetime):
         self.diagnostic_bloodpressure = bloodpressure
         self.diagnostic_heartbeat = heartbeat
         self.diagnostic_temperature = temperature
         self.diagnostic_weight = weight
         self.diagnostic_bloodtype = bloodtype
         self.diagnostic_list = diagnostic_list
+        self.patient_id = patient.id
 
         if datetime is None:
             self.diagnostic_timestamp = datetime.utcnow()
