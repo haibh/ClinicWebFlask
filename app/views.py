@@ -195,20 +195,26 @@ def medicine():
 @login_required
 def diagnostic():
     form = DiagnosticForm()
+
+    if form.get_patient_id.data:
+        global patient_id_session
+        patient_id_session = form.patient_id.data
+
     current_patient = models.Patient.query.filter_by(id=patient_id_session).first()
     print patient_id_session, current_patient
-    # diagnostics = current_patient.diagnostic.all()
-    # print diagnostics
-    # print diagnostics
-    #
-    # return render_template('diagnostic.html',
-    #                        form=form,
-    #                        patient=current_patient,
-    #                        diagnostics=diagnostics)
+
+    if patient_id_session == 0:
+        diagnostics = []
+    else:
+        # diagnostics = Diagnostic.query.all()
+        # diagnostics = models.Diagnostic.query.filter_by(patient_id=patient_id_session).all()
+        diagnostics = current_patient.diagnostic.all()
+    print diagnostics
+
     return render_template('diagnostic.html',
                            form=form,
                            patient=current_patient,
-                           # diagnostics=diagnostics,
+                           diagnostics=diagnostics,
                            patient_id_session=patient_id_session)
 
 

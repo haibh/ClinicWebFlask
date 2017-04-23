@@ -10,5 +10,6 @@ function startTime() {
 $(document).ready(function () {
     $('#patient_table').dataTable();
     $('#medicine_table').dataTable();
+    $('#diagnostic_table').dataTable();
 });
 

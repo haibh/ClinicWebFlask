@@ -67,3 +67,7 @@ class DiagnosticForm(FlaskForm):
     add_new = SubmitField(u'Thêm mới')
     update = SubmitField(u'Cập nhật')
     delete = SubmitField(u'Xóa')
+
+    patient_id = StringField('patient_id', validators=[DataRequired()])
+    get_patient_id = SubmitField(u'Xem thông tin')
+

@@ -3,8 +3,17 @@
 
 {% block content %}
     {% if current_user.is_authenticated %}
+        <h3>Chẩn đoán {{ patient_id_session }}</h3>
+        <div>
+            <form action="/diagnostic" method="POST" name="diagnostic" class="form-horizontal">
+                {{ form.hidden_tag() }}
+                <div class="col-sm-2">
+                    {{ render.render_field(form.patient_id, label_visible=false, placeholder='Mã số bệnh nhân', type='text') }}
+                    {{ form.get_patient_id }}
+                </div>
+            </form>
+        </div>
         <div class="patient">
-            <h3>Chẩn đoán {{ patient_id_session }}</h3>
             <span>Mã số: <strong>{{ patient.id }}</strong></span>
             <span>Họ tên: <strong>{{ patient.patient_name }}</strong></span>
             <span>Điện thoại: <strong>{{ patient.patient_phone }}</strong></span>
@@ -17,13 +26,14 @@
             {{ form.hidden_tag() }}
 
             <div class="form-group">
-                <div class="col-sm-1"> {{ form.refresh }}</div><br><br>
+                <div class="col-sm-1"> {{ form.refresh }}</div>
                 <div class="col-sm-2"> {{ render.render_field(form.diagnostic_datetime, label_visible=false, placeholder='Thời gian', type='text') }}</div>
                 <div class="col-sm-2"> {{ render.render_field(form.diagnostic_bloodpressure, label_visible=false, placeholder='Huyết áp', type='text') }}</div>
                 <div class="col-sm-2"> {{ render.render_field(form.diagnostic_heartbeat, label_visible=false, placeholder='Mạch', type='text') }}</div>
                 <div class="col-sm-2"> {{ render.render_field(form.diagnostic_temperature, label_visible=false, placeholder='Nhiệt độ', type='text') }}</div>
                 <div class="col-sm-2"> {{ render.render_field(form.diagnostic_weight, label_visible=false, placeholder='Cân nặng', type='text') }}</div>
-                <div class="col-sm-2"> {{ render.render_field(form.diagnostic_bloodtype, label_visible=false, placeholder='Nhóm máu ', type='text') }}</div> <br>
+                <div class="col-sm-2"> {{ render.render_field(form.diagnostic_bloodtype, label_visible=false, placeholder='Nhóm máu ', type='text') }}</div>
+                <br>
                 <div class="col-sm-12"> {{ render.render_field(form.diagnostic_list, label_visible=false, placeholder='Xét nghiệm', type='text') }}</div>
             </div>
             {{ form.view_all }}
@@ -32,6 +42,45 @@
             {{ form.delete }}
         </form>
 
+
+        <form action="/diagnostic" method="POST" name="diagostic_list" class="form-horizontal">
+            <div class="table-responsive">
+                <table class="table table-striped table-bordered table-hover" id="diagnostic_table">
+                    <thead>
+                    <tr>
+                        <th class="text-left">ID</th>
+                        <th class="text-left">Thời gian</th>
+                        <th class="text-left">Huyết áp</th>
+                        <th class="text-left">Mạch</th>
+                        <th class="text-left">Nhiệt độ</th>
+                        <th class="text-left">Cân nặng</th>
+                        <th class="text-left">Nhóm máu</th>
+                        <th class="text-left">Xét nghiệm</th>
+                        <th class="text-left">Chức năng</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for diagnostic in diagnostics %}
+                        <tr>
+                            <td class="text-left" name="patient_id"> {{ diagnostic.id }}</td>
+                            <td class="text-left" name="patient_name"> {{ diagnostic.diagnostic_datetime }}</td>
+                            <td class="text-left"> {{ diagnostic.diagnostic_bloodpressure }}</td>
+                            <td class="text-left"> {{ diagnostic.diagnostic_heartbeat }}</td>
+                            <td class="text-left"> {{ diagnostic.diagnostic_temperature }}</td>
+                            <td class="text-left"> {{ diagnostic.diagnostic_weight }}</td>
+                            <td class="text-left"> {{ diagnostic.diagnostic_bloodtype }}</td>
+                            <td class="text-left"> {{ diagnostic.diagnostic_list }}</td>
+                            <td class="text-left">
+                                <button type="button" class="edit-diagnostic btn btn-default" name="patient_id">Chọn
+                                </button>
+                            </td>
+
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </form>
 
 
 
