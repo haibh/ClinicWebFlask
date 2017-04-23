@@ -206,9 +206,9 @@ def diagnostic():
     if patient_id_session == 0:
         diagnostics = []
     else:
-        # diagnostics = Diagnostic.query.all()
+        diagnostics = Diagnostic.query.all()
         # diagnostics = models.Diagnostic.query.filter_by(patient_id=patient_id_session).all()
-        diagnostics = current_patient.diagnostic.all()
+        # diagnostics = current_patient.diagnostic.all()
     print diagnostics
 
     return render_template('diagnostic.html',

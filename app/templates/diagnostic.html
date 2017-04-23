@@ -43,7 +43,7 @@
         </form>
 
 
-        <form action="/diagnostic" method="POST" name="diagostic_list" class="form-horizontal">
+        <form action="/diagnostic" method="POST" name="diagnostic_list" class="form-horizontal">
             <div class="table-responsive">
                 <table class="table table-striped table-bordered table-hover" id="diagnostic_table">
                     <thead>
@@ -62,8 +62,8 @@
                     <tbody>
                     {% for diagnostic in diagnostics %}
                         <tr>
-                            <td class="text-left" name="patient_id"> {{ diagnostic.id }}</td>
-                            <td class="text-left" name="patient_name"> {{ diagnostic.diagnostic_datetime }}</td>
+                            <td class="text-left"> {{ diagnostic.id }}</td>
+                            <td class="text-left"> {{ diagnostic.diagnostic_datetime }}</td>
                             <td class="text-left"> {{ diagnostic.diagnostic_bloodpressure }}</td>
                             <td class="text-left"> {{ diagnostic.diagnostic_heartbeat }}</td>
                             <td class="text-left"> {{ diagnostic.diagnostic_temperature }}</td>
@@ -71,8 +71,7 @@
                             <td class="text-left"> {{ diagnostic.diagnostic_bloodtype }}</td>
                             <td class="text-left"> {{ diagnostic.diagnostic_list }}</td>
                             <td class="text-left">
-                                <button type="button" class="edit-diagnostic btn btn-default" name="patient_id">Chọn
-                                </button>
+                                <button type="button" class="edit-diagnostic btn btn-default" name="diagnostic_choose"> Chọn </button>
                             </td>
 
                         </tr>
@@ -81,17 +80,24 @@
                 </table>
             </div>
         </form>
-
-
-
-
-
-
-
-
-
-
-
-
     {% endif %}
+
+        <script type=text/javascript> // Set patient field
+    $(".edit-diagnostic").click(function () {
+        var $row = $(this).closest("tr");    // Find the row
+        var $tds = $row.find("td");
+        $("#id").val($tds[0].innerHTML);
+        $("#diagnostic_datetime").val($tds[1].innerHTML);
+        $("#diagnostic_bloodpressure").val($tds[2].innerHTML);
+        $("#diagnostic_heartbeat").val($tds[3].innerHTML);
+        $("#diagnostic_temperature").val($tds[4].innerHTML);
+        $("#diagnostic_weight").val($tds[5].innerHTML);
+        $("#diagnostic_bloodtype").val($tds[6].innerHTML);
+        $("#diagnostic_list").val($tds[7].innerHTML);
+
+        $.each($tds, function () {
+            console.log($(this).text());
+        });
+    });
+    </script>
 {% endblock %}
