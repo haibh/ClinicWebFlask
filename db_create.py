@@ -37,7 +37,6 @@ diagnostic2 = models.Diagnostic(u'200', u'900', u'36', u'81', u'O', u'bb', patie
 # diagnostic3 = models.Diagnostic(u'100', u'90', u'36', u'80', u'O', u'aa', patient2, u'10h')
 diagnostic3 = models.Diagnostic(u'100', u'90', u'36', u'80', u'O', u'aa', patient2, datetime.utcnow())
 
-print diagnostic1, type(diagnostic1)
 
 treatment1 = models.Treatment(u'khám lần đầu', patient1)
 treatment2 = models.Treatment(u'khám lần hai', patient2)

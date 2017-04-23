@@ -121,7 +121,7 @@ class Diagnostic(db.Model):
     diagnostic_datetime = db.Column(db.DATETIME)
 
     def __init__(self, bloodpressure, heartbeat, temperature, weight, bloodtype, diagnostic_list, patient,
-                 datetime):
+                 datetime=None):
         self.diagnostic_bloodpressure = bloodpressure
         self.diagnostic_heartbeat = heartbeat
         self.diagnostic_temperature = temperature
@@ -131,10 +131,10 @@ class Diagnostic(db.Model):
         self.patient_id = patient.id
 
         if datetime is None:
-            self.diagnostic_timestamp = datetime.utcnow()
+            self.diagnostic_datetime = datetime.utcnow()
 
     def __repr__(self):
-        return '<Diagnostic %r>' % (self.diagnostic_name)
+        return '<Diagnostic %r>' % (self.id)
 
 
 class Treatment(db.Model):

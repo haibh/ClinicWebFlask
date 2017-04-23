@@ -1,7 +1,8 @@
 #!/usr/bin/python
 # -*- coding: utf8 -*-
 from flask_wtf import FlaskForm
-from wtforms import Form, TextField, TextAreaField, validators, StringField, SubmitField, PasswordField, BooleanField, DateTimeField, IntegerField
+from wtforms import Form, TextField, TextAreaField, validators, StringField, SubmitField, PasswordField, BooleanField, \
+    DateTimeField, IntegerField
 from wtforms.validators import DataRequired
 
 
@@ -48,6 +49,10 @@ class MedicineForm(FlaskForm):
 
 
 class TreatmentForm(FlaskForm):
+    pass
+
+
+class DiagnosticForm(FlaskForm):
     diagnostic_id = StringField('diagnostic_id', validators=[DataRequired()])
     diagnostic_datetime = DateTimeField('diagnostic_datetime', validators=[DataRequired()])
     diagnostic_bloodpressure = StringField('diagnostic_bloodpressure', validators=[DataRequired()])
@@ -62,9 +67,3 @@ class TreatmentForm(FlaskForm):
     add_new = SubmitField(u'Thêm mới')
     update = SubmitField(u'Cập nhật')
     delete = SubmitField(u'Xóa')
-
-
-
-
-class DiagnosticForm(FlaskForm):
-    pass

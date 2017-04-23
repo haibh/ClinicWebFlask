@@ -4,30 +4,28 @@
 {% block content %}
     {% if current_user.is_authenticated %}
         <div class="patient">
-            <h3>Chẩn đoán</h3>
+            <h3>Chẩn đoán {{ patient_id_session }}</h3>
             <span>Mã số: <strong>{{ patient.id }}</strong></span>
             <span>Họ tên: <strong>{{ patient.patient_name }}</strong></span>
             <span>Điện thoại: <strong>{{ patient.patient_phone }}</strong></span>
             <span>Tuổi: <strong>{{ patient.patient_age }}</strong></span>
-            <span>Giới tính: <strong>{{ patient.patient_gender }}</strong></span> <br>
+            <span>Giới tính: <strong>{{ patient.patient_gender }}</strong></span>
             <span>Địa chỉ <strong>{{ patient.patient_address }}</strong></span>
         </div>
 
-        <form action="/index" method="POST" name="patient" class="form-horizontal">
+        <form action="/diagnostic" method="POST" name="diagnostic" class="form-horizontal">
             {{ form.hidden_tag() }}
 
             <div class="form-group">
-                <div class="col-sm-1"> {{ form.refresh }}</div>
-                <div class="col-sm-1">Thời gian: {{ render.render_field(form.diagnostic_datetime, label_visible=false, placeholder='Thời gian', type='text') }}</div>
-                <div class="col-sm-1"> {{ render.render_field(form.diagnostic_bloodpressure, label_visible=false, placeholder='Huyết áp)', type='text') }}</div>
-                <div class="col-sm-1"> {{ render.render_field(form.diagnostic_heartbeat, label_visible=false, placeholder='Mạch)', type='text') }}</div>
-                <div class="col-sm-1"> {{ render.render_field(form.diagnostic_temperature, label_visible=false, placeholder='Nhiệt độ', type='text') }}</div>
-                <div class="col-sm-1"> {{ render.render_field(form.diagnostic_weight, label_visible=false, placeholder='Cân nặng', type='text') }}</div>
-                <div class="col-sm-1"> {{ render.render_field(form.diagnostic_bloodtype, label_visible=false, placeholder='Nhóm máu ', type='text') }}</div>
-                <div class="col-sm-1"> {{ render.render_field(form.diagnostic_list, label_visible=false, placeholder='Xét nghiệm', type='text') }}</div>
+                <div class="col-sm-1"> {{ form.refresh }}</div><br><br>
+                <div class="col-sm-2"> {{ render.render_field(form.diagnostic_datetime, label_visible=false, placeholder='Thời gian', type='text') }}</div>
+                <div class="col-sm-2"> {{ render.render_field(form.diagnostic_bloodpressure, label_visible=false, placeholder='Huyết áp', type='text') }}</div>
+                <div class="col-sm-2"> {{ render.render_field(form.diagnostic_heartbeat, label_visible=false, placeholder='Mạch', type='text') }}</div>
+                <div class="col-sm-2"> {{ render.render_field(form.diagnostic_temperature, label_visible=false, placeholder='Nhiệt độ', type='text') }}</div>
+                <div class="col-sm-2"> {{ render.render_field(form.diagnostic_weight, label_visible=false, placeholder='Cân nặng', type='text') }}</div>
+                <div class="col-sm-2"> {{ render.render_field(form.diagnostic_bloodtype, label_visible=false, placeholder='Nhóm máu ', type='text') }}</div> <br>
+                <div class="col-sm-12"> {{ render.render_field(form.diagnostic_list, label_visible=false, placeholder='Xét nghiệm', type='text') }}</div>
             </div>
-
-            <br>
             {{ form.view_all }}
             {{ form.add_new }}
             {{ form.update }}
