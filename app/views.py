@@ -207,9 +207,15 @@ def diagnostic():
         diagnostics = []
     else:
         diagnostics = Diagnostic.query.all()
-        # diagnostics = models.Diagnostic.query.filter_by(patient_id=patient_id_session).all()
-        # diagnostics = current_patient.diagnostic.all()
+        diagnostics1 = Diagnostic.query.filter_by(patient_id=patient_id_session).all()
+        diagnostics2 = current_patient.diagnostics.all()
+        print diagnostics1
+        print diagnostics2
+
     print diagnostics
+    for x in diagnostics:
+        print x.id, x.diagnostic_bloodpressure, x.patient_id
+
 
     return render_template('diagnostic.html',
                            form=form,

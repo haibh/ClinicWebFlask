@@ -21,12 +21,11 @@
             <span>Giới tính: <strong>{{ patient.patient_gender }}</strong></span>
             <span>Địa chỉ <strong>{{ patient.patient_address }}</strong></span>
         </div>
+        <div class="col-sm-1"> {{ form.refresh }}</div>
 
         <form action="/diagnostic" method="POST" name="diagnostic" class="form-horizontal">
             {{ form.hidden_tag() }}
-
             <div class="form-group">
-                <div class="col-sm-1"> {{ form.refresh }}</div>
                 <div class="col-sm-2"> {{ render.render_field(form.diagnostic_datetime, label_visible=false, placeholder='Thời gian', type='text') }}</div>
                 <div class="col-sm-2"> {{ render.render_field(form.diagnostic_bloodpressure, label_visible=false, placeholder='Huyết áp', type='text') }}</div>
                 <div class="col-sm-2"> {{ render.render_field(form.diagnostic_heartbeat, label_visible=false, placeholder='Mạch', type='text') }}</div>
@@ -71,7 +70,9 @@
                             <td class="text-left"> {{ diagnostic.diagnostic_bloodtype }}</td>
                             <td class="text-left"> {{ diagnostic.diagnostic_list }}</td>
                             <td class="text-left">
-                                <button type="button" class="edit-diagnostic btn btn-default" name="diagnostic_choose"> Chọn </button>
+                                <button type="button" class="edit-diagnostic btn btn-default" name="diagnostic_choose">
+                                    Chọn
+                                </button>
                             </td>
 
                         </tr>
@@ -82,7 +83,7 @@
         </form>
     {% endif %}
 
-        <script type=text/javascript> // Set patient field
+    <script type=text/javascript> // Set patient field
     $(".edit-diagnostic").click(function () {
         var $row = $(this).closest("tr");    // Find the row
         var $tds = $row.find("td");
@@ -98,6 +99,18 @@
         $.each($tds, function () {
             console.log($(this).text());
         });
+    });
+    </script>
+
+    <script type=text/javascript> // clear all patient field
+    $("#refresh").click(function () {
+        $("#diagnostic_datetime").val('');
+        $("#diagnostic_bloodpressure").val('');
+        $("#diagnostic_heartbeat").val('');
+        $("#diagnostic_temperature").val('');
+        $("#diagnostic_weight").val('');
+        $("#diagnostic_bloodtype").val('');
+        $("#diagnostic_list").val('');
     });
     </script>
 {% endblock %}

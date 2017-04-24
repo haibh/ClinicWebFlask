@@ -64,8 +64,8 @@ class Patient(db.Model):
     patient_history = db.Column(db.Text, index=True)
     patient_family_history = db.Column(db.Text, index=True)
 
-    diagnostic = db.relationship('Diagnostic', backref='patient', lazy='dynamic')
-    treatment = db.relationship('Treatment', backref='patient', lazy='dynamic')
+    diagnostics = db.relationship('Diagnostic', backref='patient', lazy='dynamic')
+    treatments = db.relationship('Treatment', backref='patient', lazy='dynamic')
 
     def __init__(self, name, phone, age, gender, address, history, familiy_history):
         self.patient_name = name
@@ -121,7 +121,7 @@ class Diagnostic(db.Model):
     diagnostic_datetime = db.Column(db.DATETIME)
 
     def __init__(self, bloodpressure, heartbeat, temperature, weight, bloodtype, diagnostic_list, patient,
-                 datetime=None):
+                 datetime):
         self.diagnostic_bloodpressure = bloodpressure
         self.diagnostic_heartbeat = heartbeat
         self.diagnostic_temperature = temperature
